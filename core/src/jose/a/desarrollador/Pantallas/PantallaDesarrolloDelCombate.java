@@ -86,8 +86,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         init();
         tiempoMax=60;
     }
-    
-    
+        
     public void init(){
         tiempoTranscurrido = 0;
         AssetManager am= new AssetManager();
@@ -201,7 +200,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             long tiempoTranscurrido = (int)(TimeUnit.MILLISECONDS.toSeconds(momentoExacto) - TimeUnit.MILLISECONDS.toSeconds(empiezo_finish));            
             if(tiempoTranscurrido >= 2){                
                 if(scale >= 2){
-                    principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
+                    principal.setScreen(new PantallaResumenCombate(principal,boxeador,contrincante,ganador));
                 }else{
                     scale += 0.6;
                     velocidad_rotacion -= 3;
@@ -250,6 +249,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                 System.out.println("Termino");
                 empiezo_finish =  TimeUtils.millis();
                 combateTerminado = true;
+                ganador = datos[1];
                 break;
              
                 
