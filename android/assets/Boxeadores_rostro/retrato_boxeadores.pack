@@ -1,0 +1,89 @@
+
+retrato_boxeadores.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+Boxeadora_cecilia
+  rotate: false
+  xy: 1, 685
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeadora_cecilia_seleccionado
+  rotate: false
+  xy: 1, 514
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeadora_Jessi
+  rotate: false
+  xy: 303, 685
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeadora_Jessi_seleccionado
+  rotate: false
+  xy: 1, 343
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeadora_Kate
+  rotate: false
+  xy: 303, 514
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeadora_Kate_seleccionado
+  rotate: false
+  xy: 605, 685
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_Buzz
+  rotate: false
+  xy: 1, 172
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_Buzz_seleccionado
+  rotate: false
+  xy: 303, 343
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_john
+  rotate: false
+  xy: 605, 514
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_john_seleccionado
+  rotate: false
+  xy: 1, 1
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_negro
+  rotate: false
+  xy: 303, 172
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Boxeador_negro_seleccionado
+  rotate: false
+  xy: 605, 343
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1

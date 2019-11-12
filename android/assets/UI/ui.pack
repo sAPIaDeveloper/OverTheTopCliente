@@ -1,0 +1,250 @@
+
+ui.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+tabla
+  rotate: false
+  xy: 1, 718
+  size: 512, 288
+  orig: 512, 288
+  offset: 0, 0
+  index: -1
+boton_add_boxeador
+  rotate: false
+  xy: 1, 547
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+boton_add_boxeador_pulsado
+  rotate: false
+  xy: 515, 837
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+Espana
+  rotate: false
+  xy: 1, 376
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+textField
+  rotate: false
+  xy: 1, 205
+  size: 300, 169
+  orig: 300, 169
+  offset: 0, 0
+  index: -1
+stamina_barra
+  rotate: false
+  xy: 515, 735
+  size: 350, 100
+  orig: 350, 100
+  offset: 0, 0
+  index: -1
+vida_barra
+  rotate: false
+  xy: 1, 103
+  size: 350, 100
+  orig: 350, 100
+  offset: 0, 0
+  index: -1
+Francia
+  rotate: false
+  xy: 817, 894
+  size: 200, 112
+  orig: 200, 112
+  offset: 0, 0
+  index: -1
+Inglaterra
+  rotate: false
+  xy: 303, 604
+  size: 200, 112
+  orig: 200, 112
+  offset: 0, 0
+  index: -1
+corazon
+  rotate: false
+  xy: 1, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+flecha_dcha
+  rotate: false
+  xy: 303, 502
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+flecha_dcha_seleccionada
+  rotate: false
+  xy: 103, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+flecha_izq
+  rotate: false
+  xy: 303, 400
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+flecha_izq_seleccionada
+  rotate: false
+  xy: 205, 1
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rayo
+  rotate: false
+  xy: 303, 298
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+botonPantallaPrincipal
+  rotate: false
+  xy: 303, 236
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
+botonPantallaPrincipal_pulsado
+  rotate: false
+  xy: 405, 542
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
+progress_cero
+  rotate: false
+  xy: 817, 852
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_cinco
+  rotate: false
+  xy: 405, 500
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_cuatro
+  rotate: false
+  xy: 405, 458
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_diez
+  rotate: false
+  xy: 405, 416
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_doce
+  rotate: false
+  xy: 405, 374
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_dos
+  rotate: false
+  xy: 405, 332
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_nueve
+  rotate: false
+  xy: 405, 290
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_ocho
+  rotate: false
+  xy: 405, 248
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_once
+  rotate: false
+  xy: 919, 852
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_seis
+  rotate: false
+  xy: 867, 810
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_siete
+  rotate: false
+  xy: 867, 768
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_tres
+  rotate: false
+  xy: 867, 726
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_uno
+  rotate: false
+  xy: 515, 693
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+saco_cero
+  rotate: false
+  xy: 307, 26
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_cuatro
+  rotate: false
+  xy: 969, 775
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_dos
+  rotate: false
+  xy: 505, 616
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_tres
+  rotate: false
+  xy: 542, 616
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_uno
+  rotate: false
+  xy: 579, 616
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1

@@ -1,0 +1,159 @@
+
+boxeadora_jessi.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+boxeadora_jessi_espalda_bloqueo
+  rotate: false
+  xy: 1, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: -1
+boxeadora_jessi_espalda_directo_derecha_0
+  rotate: false
+  xy: 1, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_espalda_directo_derecha_1
+  rotate: false
+  xy: 110, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_espalda_directo_izquierda_0
+  rotate: false
+  xy: 1, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_espalda_directo_izquierda_1
+  rotate: false
+  xy: 110, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_espalda_gancho_derecha_0
+  rotate: false
+  xy: 219, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_espalda_gancho_derecha_1
+  rotate: false
+  xy: 110, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_espalda_gancho_izquierda_0
+  rotate: false
+  xy: 219, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_espalda_gancho_izquierda_1
+  rotate: false
+  xy: 328, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_espalda_pivotar_0
+  rotate: false
+  xy: 219, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_espalda_pivotar_1
+  rotate: false
+  xy: 328, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_frente_bloqueo
+  rotate: false
+  xy: 437, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: -1
+boxeadora_jessi_frente_directo_derecha_0
+  rotate: false
+  xy: 328, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_frente_directo_derecha_1
+  rotate: false
+  xy: 437, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_frente_directo_izquierda_0
+  rotate: false
+  xy: 546, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_frente_directo_izquierda_1
+  rotate: false
+  xy: 437, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_frente_gancho_derecha_0
+  rotate: false
+  xy: 546, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_frente_gancho_derecha_1
+  rotate: false
+  xy: 655, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_frente_gancho_izquierda_0
+  rotate: false
+  xy: 546, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_frente_gancho_izquierda_1
+  rotate: false
+  xy: 655, 259
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
+boxeadora_jessi_frente_pivotar_0
+  rotate: false
+  xy: 764, 517
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 0
+boxeadora_jessi_frente_pivotar_1
+  rotate: false
+  xy: 655, 1
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: 1
