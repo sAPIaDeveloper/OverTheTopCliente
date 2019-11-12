@@ -44,6 +44,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     TextButton boton_jugar;
     TextButton boton_crear_competicion;
     TextButton boton_apuntarse_competicion;
+    TextButton boton_consultar_campeonatos;
     TextButton boton_estadisticas;
     TextButton boton_modificar_datos_boxeador;
     TextButton boton_cambiar_boxeador;
@@ -122,6 +123,15 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
 
         });
         
+        boton_consultar_campeonatos=new TextButton("CONSULTAR MIS COMPETICIONES",textButtonStyle);
+        boton_consultar_campeonatos.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {                  
+                principal.setScreen(new PantallaConsultarMisCampeonatos(principal,nombre_boxeador));
+            }
+
+        });
+        
         boton_estadisticas=new TextButton("CONSULTAR  ESTADISTICAS",textButtonStyle);
         boton_estadisticas.addListener(new ClickListener(){
             @Override
@@ -189,11 +199,12 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         tabla.add(boton_crear_competicion).width(300).height(70);
         tabla.add(boton_apuntarse_competicion).width(300).height(70);
         tabla.row().spaceTop(30);
+        tabla.add(boton_consultar_campeonatos).colspan(2).fillX().height(70);
+        tabla.row().spaceTop(30);
         tabla.add(boton_estadisticas).colspan(2).fillX().height(70);
         tabla.row().spaceTop(20);
-        tabla.add(boton_modificar_datos_boxeador).colspan(2).fillX().height(70);
-        tabla.row().spaceTop(20);
-        tabla.add(boton_cambiar_boxeador).colspan(2).fillX().height(70);
+        tabla.add(boton_modificar_datos_boxeador).width(300).height(70);        
+        tabla.add(boton_cambiar_boxeador).width(300).height(70);
         
     }
     
