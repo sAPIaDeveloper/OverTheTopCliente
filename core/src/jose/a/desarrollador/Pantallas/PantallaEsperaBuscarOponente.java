@@ -8,8 +8,11 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.OrthographicCamera;
+import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
@@ -47,7 +50,8 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     ESTADOS estado_saco;
     boolean animacion_terminada;
     int animacion_mostrar;
-
+    BitmapFont font;
+    float widthTexto;
     public PantallaEsperaBuscarOponente(Principal principal, Socket socketJugador,String nombre_boxeador,String competicion) {
         this.principal = principal;
         this.socketJugador = socketJugador;
@@ -63,6 +67,9 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
                
+        font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
+        font.setColor(Color.WHITE);
+        
         spriteBatch=new SpriteBatch();
       
         extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
@@ -74,6 +81,10 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
         animacion_mostrar=0;        
         
         saco=(TextureRegion) Assets.instance.assetsUi.saco;
+        
+        GlyphLayout layout = new GlyphLayout();     
+        layout.setText(font,"Buscando oponente..");
+        widthTexto = layout.width;
         
         try {
                     
@@ -142,6 +153,8 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
                     saco.getRegionHeight(),
                     false,
                     false);
+        
+        font.draw(spriteBatch, "Buscando oponente..", (extendViewport.getWorldWidth()/2) - (widthTexto/2), extendViewport.getWorldHeight()/4);
         
         spriteBatch.draw(
                     barra_progreso.getTexture(),

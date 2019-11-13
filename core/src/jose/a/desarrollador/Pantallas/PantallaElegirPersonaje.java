@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import static com.badlogic.gdx.graphics.Color.BLACK;
 import com.badlogic.gdx.graphics.GL20;
@@ -41,6 +42,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
     String tipo_boxeador;
     TextButton atras;
     TextButton siguiente;
+    Sound sonidoVoz;
     public PantallaElegirPersonaje(Principal principal) {
         this.principal=principal;
         
@@ -93,7 +95,13 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
             @Override
             public void clicked(InputEvent event, float x, float y) {                  
                 if(!tipo_boxeador.isEmpty()){
-                    cambiarPantalla("siguiente");
+                    if(sonidoVoz == null){
+                        cambiarPantalla("siguiente");
+                    }else{
+                        sonidoVoz.stop();
+                        cambiarPantalla("siguiente");
+                    }
+                    
                 }
             }
 
@@ -115,6 +123,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
                         if(boton==boton_interno){
                             tipo_boxeador=boton_interno.getLabel().getText().toString();
                             boton.getStyle().up=boxeadores.getDrawable(tipo_boxeador+"_seleccionado");
+                            startVoice();
                         }else{
                             boton_interno.getStyle().up=boxeadores.getDrawable(boton_interno.getLabel().getText().toString());
                         }
@@ -186,6 +195,31 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
         Assets.instance.dispose();
 
 
+    }
+    
+    public void startVoice(){
+        switch(tipo_boxeador){
+            case "Boxeador_john":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_john;
+                break;
+            case "Boxeador_negro":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_negro;
+                break;
+            case "Boxeador_Buzz":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_buzz;
+                break;
+            case "Boxeadora_Kate":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_kate;
+                break;
+            case "Boxeadora_Jessi":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_jessi;
+                break;
+            case "Boxeadora_cecilia":
+                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_cecilia;
+                break;
+        }
+        
+        sonidoVoz.play(100);
     }
     
 }

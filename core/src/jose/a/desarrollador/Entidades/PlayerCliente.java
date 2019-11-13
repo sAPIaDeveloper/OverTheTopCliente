@@ -31,7 +31,7 @@ public class PlayerCliente {
     String tipo_boxeador; // para saber que boxeador pintar
     String nombre_boxeador;
     int vida;
-    int stamina;
+    double stamina;
     int golpes_lanzados;
     int golpes_conectados;
     String estado;
@@ -73,6 +73,10 @@ public class PlayerCliente {
            estado = (String) lista_acciones.pop();
            animacion_terminada = false;
        }*/
+       stamina += 0.1;
+       if(stamina > 150){
+           stamina = 150;
+       }
         switch(estado){
             case "PIVOTANDO":
                 estados_boxeador=ESTADOS.PIVOTANDO;
@@ -168,11 +172,11 @@ public class PlayerCliente {
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                             // Restablezco su posicion
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.pivotando_frente.getKeyFrame(elapsed_time);
+                            boxeador= (TextureRegion) Assets.instance.assetsKate.pivotando_frente.getKeyFrame(elapsed_time);
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*1.7f)/3);
                         }else{
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.pivotando_espalda.getKeyFrame(elapsed_time);
+                            boxeador= (TextureRegion) Assets.instance.assetsKate.pivotando_espalda.getKeyFrame(elapsed_time);
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*2)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2)/2); 
                         }
@@ -180,11 +184,11 @@ public class PlayerCliente {
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                             // Restablezco su posicion
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.pivotando_frente.getKeyFrame(elapsed_time);
+                            boxeador= (TextureRegion) Assets.instance.assetsJessi.pivotando_frente.getKeyFrame(elapsed_time);
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*1.7f)/3);
                         }else{
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.pivotando_espalda.getKeyFrame(elapsed_time);
+                            boxeador= (TextureRegion) Assets.instance.assetsJessi.pivotando_espalda.getKeyFrame(elapsed_time);
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*2)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2)/2); 
                         }
@@ -227,21 +231,21 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.bloqueo_frente.getKeyFrame(elapsed_time);                            
+                            boxeador= (TextureRegion) Assets.instance.assetsKate.bloqueo_frente.getKeyFrame(elapsed_time);                            
                             comprobarAnimacionTerminada(Assets.instance.assetsKate.bloqueo_frente,walkTimeSeconds);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.bloqueo_espalda.getKeyFrame(elapsed_time);
+                             boxeador=(TextureRegion) Assets.instance.assetsKate.bloqueo_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.bloqueo_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.bloqueo_frente.getKeyFrame(elapsed_time);                            
+                            boxeador= (TextureRegion) Assets.instance.assetsJessi.bloqueo_frente.getKeyFrame(elapsed_time);                            
                             comprobarAnimacionTerminada(Assets.instance.assetsJessi.bloqueo_frente,walkTimeSeconds);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.bloqueo_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.bloqueo_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.bloqueo_espalda,walkTimeSeconds);
                         }
                         break;
@@ -280,7 +284,7 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.directo_izquierda_frente.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.directo_izquierda_frente.getKeyFrame(elapsed_time);
                              
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.directo_izquierda_frente,walkTimeSeconds);
                              // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
@@ -289,14 +293,14 @@ public class PlayerCliente {
                             
                              
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.directo_izquierda_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.directo_izquierda_espalda.getKeyFrame(elapsed_time);
                              
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.directo_izquierda_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.directo_izquierda_frente.getKeyFrame(elapsed_time);
+                             boxeador=(TextureRegion) Assets.instance.assetsJessi.directo_izquierda_frente.getKeyFrame(elapsed_time);
                              
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_izquierda_frente,walkTimeSeconds);
                              // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
@@ -305,7 +309,7 @@ public class PlayerCliente {
                             
                              
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.directo_izquierda_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.directo_izquierda_espalda.getKeyFrame(elapsed_time);
                              
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_izquierda_espalda,walkTimeSeconds);
                         }
@@ -345,27 +349,27 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.directo_derecha_frente.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.directo_derecha_frente.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.directo_derecha_frente,walkTimeSeconds);
                             // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.directo_derecha_espalda.getKeyFrame(elapsed_time);
-                             comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_derecha_espalda,walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.directo_derecha_espalda.getKeyFrame(elapsed_time);
+                             comprobarAnimacionTerminada(Assets.instance.assetsKate.directo_derecha_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.directo_derecha_frente.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.directo_derecha_frente.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_derecha_frente,walkTimeSeconds);
                             // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.directo_derecha_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.directo_derecha_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_derecha_espalda,walkTimeSeconds);
                         }
                         break;
@@ -404,25 +408,25 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.gancho_izquierda_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.gancho_izquierda_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.gancho_izquierda_frente,walkTimeSeconds);
                               // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.gancho_izquierda_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.gancho_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.gancho_izquierda_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.gancho_izquierda_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_izquierda_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_izquierda_frente,walkTimeSeconds);
                               // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.gancho_izquierda_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_izquierda_espalda,walkTimeSeconds);
                         }
                         break;
@@ -461,25 +465,25 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.gancho_derecha_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.gancho_derecha_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.gancho_derecha_frente,walkTimeSeconds);
                               // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.gancho_derecha_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.gancho_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.gancho_derecha_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.gancho_derecha_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_derecha_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_derecha_frente,walkTimeSeconds);
                               // Tengo que bajar un poco la animacion para que este a la misma altura el golpeo 
                             position_boxeador.x= (extendViewport.getWorldWidth()/2)-((boxeador.getRegionWidth()*1.5f)/2);  
                             position_boxeador.y= (extendViewport.getWorldHeight()/2)-((boxeador.getRegionHeight()*2.5f)/3);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.gancho_derecha_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_derecha_espalda,walkTimeSeconds);
                         }
                         break;
@@ -518,20 +522,20 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.esquivar_izquierda_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.esquivar_izquierda_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.esquivar_izquierda_frente,walkTimeSeconds);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.esquivar_izquierda_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.esquivar_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.esquivar_izquierda_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         // Poner que esquiva
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.esquivar_izquierda_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_izquierda_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_izquierda_frente,walkTimeSeconds);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.esquivar_izquierda_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_izquierda_espalda,walkTimeSeconds);
                         }                        
                         break;
@@ -570,19 +574,19 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.esquivar_derecha_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.esquivar_derecha_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.esquivar_derecha_frente,walkTimeSeconds);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.esquivar_derecha_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.esquivar_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.esquivar_derecha_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.esquivar_derecha_frente.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_derecha_frente.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_derecha_frente,walkTimeSeconds);
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.esquivar_derecha_espalda.getKeyFrame(walkTimeSeconds);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_derecha_espalda,walkTimeSeconds);
                         }
                         break;
@@ -621,21 +625,21 @@ public class PlayerCliente {
                         break;
                     case "Boxeadora_Kate":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.golpeado_frente.getKeyFrame(elapsed_time);                            
+                            boxeador= (TextureRegion) Assets.instance.assetsKate.golpeado_frente.getKeyFrame(elapsed_time);                            
                             comprobarAnimacionTerminada(Assets.instance.assetsKate.golpeado_frente,walkTimeSeconds);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsKate.golpeado_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsKate.golpeado_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsKate.golpeado_espalda,walkTimeSeconds);
                         }
                         break;
                     case "Boxeadora_Jessi":
                         if(rol_boxeador.equals("CONTRINCANTE")){
-                            boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.golpeado_frente.getKeyFrame(elapsed_time);                            
+                            boxeador= (TextureRegion) Assets.instance.assetsJessi.golpeado_frente.getKeyFrame(elapsed_time);                            
                             comprobarAnimacionTerminada(Assets.instance.assetsJessi.golpeado_frente,walkTimeSeconds);
                             
                         }else{
-                             boxeador=(TextureRegion) (TextureRegion) Assets.instance.assetsJessi.golpeado_espalda.getKeyFrame(elapsed_time);
+                             boxeador= (TextureRegion) Assets.instance.assetsJessi.golpeado_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.golpeado_espalda,walkTimeSeconds);
                         }
                         break;
@@ -708,7 +712,9 @@ public class PlayerCliente {
     
     public void comprobarAnimacionTerminada(Animation animacion,float walkTimeSeconds){
         int frame= animacion.getKeyFrameIndex(walkTimeSeconds);
-        if(frame == 3){
+        int framesAnimacion = animacion.getKeyFrames().length-1;
+                
+        if(frame == framesAnimacion){
             estados_boxeador = ESTADOS.PIVOTANDO;
             animacion_terminada = true;
         }
@@ -727,12 +733,15 @@ public class PlayerCliente {
         }
     }
 
-    public int getStamina() {
+    public double getStamina() {
         return stamina;
     }
 
     public void setStamina(int stamina) {
-        this.stamina = stamina;
+        this.stamina -= stamina;
+        if(this.stamina<=0){
+            this.stamina=0;
+        }
     }
     
     public void sumarGolpeLanzado(){

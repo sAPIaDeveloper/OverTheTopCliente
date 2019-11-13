@@ -5,191 +5,202 @@ filter: Nearest,Nearest
 repeat: none
 boxeadora_kate_espalda_bloqueo
   rotate: false
-  xy: 1, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 0, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_directo_derecha_cero
   rotate: false
-  xy: 1, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 0, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_directo_derecha_uno
   rotate: false
-  xy: 110, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 108, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_directo_izquierda_cero
   rotate: false
-  xy: 1, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 0, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_directo_izquierda_uno
   rotate: false
-  xy: 110, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 108, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_esquivar_derecha
   rotate: false
-  xy: 219, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 216, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_esquivar_izquierda
   rotate: false
-  xy: 110, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 108, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_gancho_derecha_cero
   rotate: false
-  xy: 219, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 216, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_gancho_derecha_uno
   rotate: false
-  xy: 328, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 324, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_gancho_izquierda_cero
   rotate: false
-  xy: 219, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 216, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_gancho_izquierda_uno
   rotate: false
-  xy: 328, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 324, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_golpeado
   rotate: false
-  xy: 437, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 432, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_pivotar_cero
   rotate: false
-  xy: 328, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 324, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_espalda_pivotar_uno
   rotate: false
-  xy: 437, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 432, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_bloqueo
   rotate: false
-  xy: 546, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 540, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_directo_derecha_cero
   rotate: false
-  xy: 437, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 432, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_directo_derecha_uno
   rotate: false
-  xy: 546, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 540, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_directo_izquierda_cero
   rotate: false
-  xy: 655, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 648, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_directo_izquierda_uno
   rotate: false
-  xy: 546, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 540, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_esquivar_derecha
   rotate: false
-  xy: 655, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 648, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_esquivar_izquierda
   rotate: false
-  xy: 764, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 756, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_gancho_derecha_cero
   rotate: false
-  xy: 655, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 648, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_gancho_derecha_uno
   rotate: false
-  xy: 764, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 756, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_gancho_izquierda_cero
   rotate: false
-  xy: 873, 525
-  size: 107, 260
-  orig: 107, 260
+  xy: 864, 514
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_gancho_izquierda_uno
   rotate: false
-  xy: 764, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 756, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_golpeado
   rotate: false
-  xy: 873, 263
-  size: 107, 260
-  orig: 107, 260
+  xy: 864, 257
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 boxeadora_kate_frente_pivotar_cero
   rotate: false
-  xy: 873, 1
-  size: 107, 260
-  orig: 107, 260
+  xy: 864, 0
+  size: 107, 256
+  orig: 107, 256
   offset: 0, 0
   index: -1
 
+boxeadora_kate2.png
+format: RGBA8888
+filter: Nearest,Nearest
+repeat: none
+boxeadora_kate_frente_pivotar_uno
+  rotate: false
+  xy: 0, 0
+  size: 107, 256
+  orig: 107, 256
+  offset: 0, 0
+  index: -1

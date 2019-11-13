@@ -215,6 +215,15 @@ public class Constantes {
     public static String IP="localhost";
     public static int PUERTO=4444;
     
+    // Assets Sonido
+    
+    public static String VOZ_BUZZ="Sonido/voz_buzz.wav";
+    public static String VOZ_CECILIA="Sonido/voz_cecilia.wav";
+    public static String VOZ_JESSI="Sonido/voz_jessi.wav";
+    public static String VOZ_JOHN="Sonido/voz_john.wav";
+    public static String VOZ_KATE="Sonido/voz_kate.wav";
+    public static String VOZ_NEGRO="Sonido/voz_negro.wav";
+    
     // Información del jugador
     
     public static Usuario DATOS_USUARIO= new Usuario();

@@ -145,7 +145,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         
         publico.render(spriteBatch, extendViewport);
         tatami.render(spriteBatch, extendViewport);
-        String informacionHud = boxeador.getVida()+"&"+boxeador.getStamina()+"&"+contrincante.getVida()+"&"+contrincante.getStamina();
+        String informacionHud = boxeador.getVida()+"&"+(int)boxeador.getStamina()+"&"+contrincante.getVida()+"&"+(int)contrincante.getStamina();
         hud.render(spriteBatch, informacionHud,extendViewport);
         
        
@@ -238,8 +238,8 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                 break;
             
             case ACTUALIZAR_ACCIONES:
-                accion_boxeador = accionAPintar(datos[1],datos[2],boxeador);
-                accion_contrincante = accionAPintar(datos[2],datos[1],contrincante);
+                accion_boxeador = accionAPintar(datos[1],datos[2],boxeador,contrincante);
+                accion_contrincante = accionAPintar(datos[2],datos[1],contrincante,boxeador);
                 
                 String mensaje_para_el_servidor = "14&"+boxeador.devolverInformacionParaElServidor()+"&"+accion_boxeador;
                 out.println(mensaje_para_el_servidor);
@@ -256,7 +256,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         }
     }
     
-    public String accionAPintar(String accionBoxeador,String accionContrincante,PlayerCliente player){
+    public String accionAPintar(String accionBoxeador,String accionContrincante,PlayerCliente player,PlayerCliente contrincante){
         String respuesta="";
         /*
         PIVOTANDO,
@@ -275,18 +275,18 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                      
                     case "DIRECTO":
                           respuesta="GOLPEADO"; 
-                          player.setVida(10);
-                          
+                          player.setVida(obtenerVidaAQuitarDirecto(contrincante.getStamina()));
+                        
                     break;
 
                     case "GANCHO_IZQUIERDA":
                         respuesta="GOLPEADO"; 
-                        player.setVida(20);
+                        player.setVida(obtenerVidaAQuitarGancho(contrincante.getStamina()));
                     break;
 
                     case "GANCHO_DERECHA":
                         respuesta="GOLPEADO"; 
-                        player.setVida(20);
+                        player.setVida(obtenerVidaAQuitarGancho(contrincante.getStamina()));
                     break;
                     
                     default:
@@ -296,6 +296,8 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "BLOQUEO":
+                player.setStamina(10);
+                
                 switch(accionContrincante){                    
                     case "DIRECTO":
                         //quitar stamina con respecto al directo
@@ -320,6 +322,8 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "DIRECTO":
+                System.out.println("stamina");
+                player.setStamina(7);
                 switch(accionContrincante){
 
                     case "DIRECTO":
@@ -340,7 +344,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                     break;
                     
                     default:
-                        
+                    contrincante.setVida(obtenerVidaAQuitarDirecto(player.getStamina()));
                     if(random>5){
                         respuesta="DIRECTO_DERECHA";
                     }else{
@@ -353,18 +357,20 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "GANCHO_IZQUIERDA":
+                player.setStamina(15);
                 switch(accionContrincante){
                                        
 
                     case "DIRECTO":
                         respuesta="GOLPEADO";
-                        player.setVida(10);
+                        player.setVida(obtenerVidaAQuitarDirecto(contrincante.getStamina()));
                         player.sumarGolpeLanzado();
                          
                         
                     break;
 
                     default:
+                        contrincante.setVida(obtenerVidaAQuitarGancho(player.getStamina()));
                         respuesta=accionBoxeador;
                         player.sumarGolpeLanzado();
                         player.sumarGolpeConectado();
@@ -374,16 +380,18 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "GANCHO_DERECHA":
+                player.setStamina(15);
                 switch(accionContrincante){
                     
                     case "DIRECTO":
                         respuesta="GOLPEADO";
-                        player.setVida(10);
+                        player.setVida(obtenerVidaAQuitarDirecto(contrincante.getStamina()));
                         player.sumarGolpeLanzado();
                          
                     break;
 
                     default:
+                        contrincante.setVida(obtenerVidaAQuitarGancho(player.getStamina()));
                         respuesta=accionBoxeador;
                         player.sumarGolpeLanzado();
                         player.sumarGolpeConectado();
@@ -392,13 +400,14 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "ESQUIVAR_IZQUIERDA":
+                player.setStamina(4);
                 switch(accionContrincante){
                   
                
 
                     case "GANCHO_DERECHA":
                         respuesta="GOLPEADO";
-                        player.setVida(15);
+                        player.setVida(obtenerVidaAQuitarGancho(contrincante.getStamina()));
                     break;
 
                     default:
@@ -408,11 +417,12 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
             case "ESQUIVAR_DERECHA":
+                player.setStamina(4);
                 switch(accionContrincante){                    
 
                     case "GANCHO_IZQUIERDA":
                         respuesta="GOLPEADO";
-                        player.setVida(15);
+                        player.setVida(obtenerVidaAQuitarGancho(contrincante.getStamina()));
                     break;
 
                     default:
@@ -434,5 +444,29 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
 
     }
     
+    public int obtenerVidaAQuitarGancho(double staminaContrincante){
+        
+        if(staminaContrincante >= 112){
+            return 20;
+        }else if(staminaContrincante >= 75 && staminaContrincante < 112){
+            return 17;
+        }else if(staminaContrincante >= 37 && staminaContrincante < 75){
+            return 12;
+        }else{
+            return 9;
+        }
+    }
     
+    public int obtenerVidaAQuitarDirecto(double staminaContrincante){
+        
+        if(staminaContrincante >= 112){
+            return 10;
+        }else if(staminaContrincante >= 75 && staminaContrincante < 112){
+            return 8;
+        }else if(staminaContrincante >= 37 && staminaContrincante < 75){
+            return 5;
+        }else{
+            return 3;
+        }
+    }
 }

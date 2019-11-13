@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas.AtlasRegion;
@@ -33,6 +34,7 @@ public class Assets implements Disposable,AssetErrorListener {
     public AssetsKATE assetsKate;
     public AssetsJESSI assetsJessi;
     public AssetsCECILIA assetsCecilia;
+    public AssetsSonido assetsSonido;
     
     public void init(AssetManager assetManager){
         this.assetManager = new AssetManager();
@@ -40,7 +42,7 @@ public class Assets implements Disposable,AssetErrorListener {
         assetManager.load(Constantes.TEXTURE_ATLAS_INICIO, TextureAtlas.class);
         assetManager.load(Constantes.TEXTURE_ATLAS_UI, TextureAtlas.class);
         assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_JESSI, TextureAtlas.class);
-        assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_KATE, TextureAtlas.class);
+        assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_KATE, TextureAtlas.class);     
         assetManager.finishLoading();
         
         TextureAtlas atlasInicio = assetManager.get(Constantes.TEXTURE_ATLAS_INICIO);
@@ -52,6 +54,7 @@ public class Assets implements Disposable,AssetErrorListener {
         assetsUi = new AssetsUI(atlasUI);
         assetsJessi = new AssetsJESSI(atlasJessi);
         assetsKate = new AssetsKATE(atlasKate);
+        assetsSonido = new AssetsSonido();
     }
     
     @Override
@@ -259,9 +262,7 @@ public class Assets implements Disposable,AssetErrorListener {
             
             Array<AtlasRegion> accion_golpeado_frente = new Array<AtlasRegion>();            
             accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GOLPEADO));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GOLPEADO));            
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GOLPEADO));             
             golpeado_frente=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_frente,Animation.PlayMode.LOOP);
             
             //PERSONAJE DE ESPALDA
@@ -300,7 +301,7 @@ public class Assets implements Disposable,AssetErrorListener {
             gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_0));
             gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_1));
             
-            gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
             gancho_derecha_espalda=new Animation(Constantes.GANCHO_LOOP,gancho_dcha_espalda,Animation.PlayMode.LOOP);
             
             Array<AtlasRegion> accion_bloquear_espalda = new Array<AtlasRegion>();            
@@ -341,9 +342,7 @@ public class Assets implements Disposable,AssetErrorListener {
             
             Array<AtlasRegion> accion_golpeado_espalda = new Array<AtlasRegion>();            
             accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GOLPEADO));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GOLPEADO));                        
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GOLPEADO));                       
             golpeado_espalda=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_espalda,Animation.PlayMode.LOOP);
             
         }
@@ -428,9 +427,7 @@ public class Assets implements Disposable,AssetErrorListener {
             
             Array<AtlasRegion> accion_golpeado_frente = new Array<AtlasRegion>();            
             accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_GOLPEADO));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
-            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_GOLPEADO));            
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_GOLPEADO));                
             golpeado_frente=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_frente,Animation.PlayMode.LOOP);
             
             //PERSONAJE DE ESPALDA
@@ -495,9 +492,7 @@ public class Assets implements Disposable,AssetErrorListener {
             
             Array<AtlasRegion> accion_golpeado_espalda = new Array<AtlasRegion>();            
             accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_GOLPEADO));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
-            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_GOLPEADO));                        
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_GOLPEADO));                                   
             golpeado_espalda=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_espalda,Animation.PlayMode.LOOP);
             
         }
@@ -506,5 +501,23 @@ public class Assets implements Disposable,AssetErrorListener {
     public class AssetsCECILIA{
         public AssetsCECILIA(TextureAtlas atlas) {
         }
+    }
+    
+    public class AssetsSonido{
+        public final Sound voz_buzz;
+        public final Sound voz_john;
+        public final Sound voz_negro;
+        public final Sound voz_jessi;
+        public final Sound voz_kate;
+        public final Sound voz_cecilia;
+        public AssetsSonido() {
+            voz_buzz = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_BUZZ));
+            voz_john = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JOHN));
+            voz_negro = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_NEGRO));
+            voz_jessi = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JESSI));
+            voz_kate = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_KATE));
+            voz_cecilia = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_CECILIA));
+        }
+        
     }
 }
