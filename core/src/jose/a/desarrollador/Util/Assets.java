@@ -39,15 +39,19 @@ public class Assets implements Disposable,AssetErrorListener {
         assetManager.setErrorListener(this);
         assetManager.load(Constantes.TEXTURE_ATLAS_INICIO, TextureAtlas.class);
         assetManager.load(Constantes.TEXTURE_ATLAS_UI, TextureAtlas.class);
-        assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_BOXEADORES, TextureAtlas.class);
+        assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_JESSI, TextureAtlas.class);
+        assetManager.load(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_KATE, TextureAtlas.class);
         assetManager.finishLoading();
         
         TextureAtlas atlasInicio = assetManager.get(Constantes.TEXTURE_ATLAS_INICIO);
         TextureAtlas atlasUI = assetManager.get(Constantes.TEXTURE_ATLAS_UI);
-        TextureAtlas atlasJessi = assetManager.get(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_BOXEADORES);
-        screen= new ScreenInicio(atlasInicio);
-        assetsUi=new AssetsUI(atlasUI);
-        assetsJessi=new AssetsJESSI(atlasJessi);
+        TextureAtlas atlasJessi = assetManager.get(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_JESSI);
+        TextureAtlas atlasKate = assetManager.get(Constantes.TEXTURE_ATLAS_MOVIMIENTOS_KATE);
+        
+        screen = new ScreenInicio(atlasInicio);
+        assetsUi = new AssetsUI(atlasUI);
+        assetsJessi = new AssetsJESSI(atlasJessi);
+        assetsKate = new AssetsKATE(atlasKate);
     }
     
     @Override
@@ -180,33 +184,192 @@ public class Assets implements Disposable,AssetErrorListener {
         }
         
     }
+    
     public class AssetsBUZZ{
         public AssetsBUZZ(TextureAtlas atlas) {
         }
     }
+    
     public class AssetsNEGRO{
         public AssetsNEGRO(TextureAtlas atlas) {
         }
     }
+    
     public class AssetsKATE{
+        public final Animation pivotando_frente;
+        public final Animation directo_izquierda_frente;
+        public final Animation directo_derecha_frente;
+        public final Animation esquivar_izquierda_frente;
+        public final Animation esquivar_derecha_frente;
+        public final Animation gancho_izquierda_frente;
+        public final Animation gancho_derecha_frente;
+        public final Animation bloqueo_frente;
+        public final Animation golpeado_frente;
+        
+        public final Animation pivotando_espalda;
+        public final Animation directo_izquierda_espalda;
+        public final Animation directo_derecha_espalda;
+        public final Animation esquivar_izquierda_espalda;
+        public final Animation esquivar_derecha_espalda;
+        public final Animation gancho_izquierda_espalda;
+        public final Animation gancho_derecha_espalda;
+        public final Animation bloqueo_espalda;
+        public final Animation golpeado_espalda;
+        
         public AssetsKATE(TextureAtlas atlas) {
+            //PERSONAJE DE FRENTE
+            
+            Array<AtlasRegion> accion_pivotar_frente = new Array<AtlasRegion>();            
+            accion_pivotar_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_pivotar_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_1));            
+            pivotando_frente=new Animation(Constantes.PIVOTEO_LOOP,accion_pivotar_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> directo_izq_frente = new Array<AtlasRegion>();            
+            directo_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_IZQUIERDA_0));
+            directo_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_IZQUIERDA_1)); 
+            directo_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_IZQUIERDA_0));
+            directo_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            directo_izquierda_frente=new Animation(Constantes.DIRECTO_LOOP,directo_izq_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> directo_dcha_frente = new Array<AtlasRegion>();            
+            directo_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_DERECHA_0));
+            directo_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_DERECHA_1));
+            directo_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_DIRECTO_DERECHA_0)); 
+            directo_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            directo_derecha_frente=new Animation(Constantes.DIRECTO_LOOP,directo_dcha_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> gancho_izq_frente = new Array<AtlasRegion>();            
+            gancho_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GANCHO_IZQUIERDA_0));
+            gancho_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GANCHO_IZQUIERDA_1));               
+            gancho_izq_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            gancho_izquierda_frente=new Animation(Constantes.GANCHO_LOOP,gancho_izq_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> gancho_dcha_frente = new Array<AtlasRegion>();            
+            gancho_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GANCHO_DERECHA_0));
+            gancho_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GANCHO_DERECHA_1));              
+            gancho_dcha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            gancho_derecha_frente=new Animation(Constantes.GANCHO_LOOP,gancho_dcha_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_bloquear_frente = new Array<AtlasRegion>();            
+            accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_BLOQUEO));
+            accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_BLOQUEO));
+            accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));            
+            bloqueo_frente=new Animation(Constantes.BLOQUEO_LOOP,accion_bloquear_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_golpeado_frente = new Array<AtlasRegion>();            
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GOLPEADO));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_GOLPEADO));            
+            golpeado_frente=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_frente,Animation.PlayMode.LOOP);
+            
+            //PERSONAJE DE ESPALDA
+            
+            Array<AtlasRegion> accion_pivotar_espalda = new Array<AtlasRegion>();            
+            accion_pivotar_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_pivotar_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_1));            
+            pivotando_espalda=new Animation(Constantes.PIVOTEO_LOOP,accion_pivotar_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> directo_izq_espalda = new Array<AtlasRegion>();       
+            
+            directo_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_IZQUIERDA_0));
+            directo_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_IZQUIERDA_1)); 
+            directo_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_IZQUIERDA_0));
+            directo_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            directo_izquierda_espalda=new Animation(Constantes.DIRECTO_LOOP,directo_izq_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> directo_dcha_espalda = new Array<AtlasRegion>();   
+            
+            directo_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_DERECHA_0));
+            directo_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_DERECHA_1));  
+            directo_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_DIRECTO_DERECHA_0));
+            directo_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            directo_derecha_espalda=new Animation(Constantes.DIRECTO_LOOP,directo_dcha_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> gancho_izq_espalda = new Array<AtlasRegion>();  
+            
+            gancho_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_IZQUIERDA_0));
+            gancho_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_IZQUIERDA_1));
+            
+            gancho_izq_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));            
+            gancho_izquierda_espalda=new Animation(Constantes.GANCHO_LOOP,gancho_izq_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> gancho_dcha_espalda = new Array<AtlasRegion>();   
+            
+            gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_0));
+            gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_1));
+            
+            gancho_dcha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            gancho_derecha_espalda=new Animation(Constantes.GANCHO_LOOP,gancho_dcha_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_bloquear_espalda = new Array<AtlasRegion>();            
+            accion_bloquear_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_bloquear_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_BLOQUEO));
+            accion_bloquear_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_BLOQUEO));
+            accion_bloquear_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));            
+            bloqueo_espalda=new Animation(Constantes.BLOQUEO_LOOP,accion_bloquear_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_derecha_frente = new Array<AtlasRegion>();            
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_ESQUIVAR_DERECHA));
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_ESQUIVAR_DERECHA));            
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));            
+            esquivar_derecha_frente=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_derecha_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_izquierda_frente = new Array<AtlasRegion>();            
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_KATE_FRENTE_PIVOTAR_0));            
+            esquivar_izquierda_frente=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_izquierda_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_derecha_espalda = new Array<AtlasRegion>();            
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_ESQUIVAR_DERECHA));
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_ESQUIVAR_DERECHA));            
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));            
+            esquivar_derecha_espalda=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_derecha_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_izquierda_espalda = new Array<AtlasRegion>();            
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));            
+            esquivar_izquierda_espalda=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_izquierda_espalda,Animation.PlayMode.LOOP);
+            
+            
+            Array<AtlasRegion> accion_golpeado_espalda = new Array<AtlasRegion>();            
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GOLPEADO));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_PIVOTAR_0));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_KATE_ESPALDA_GOLPEADO));                        
+            golpeado_espalda=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_espalda,Animation.PlayMode.LOOP);
+            
         }
     }
+    
     public class AssetsJESSI{
         
         public final Animation pivotando_frente;
         public final Animation directo_izquierda_frente;
         public final Animation directo_derecha_frente;
+        public final Animation esquivar_izquierda_frente;
+        public final Animation esquivar_derecha_frente;
         public final Animation gancho_izquierda_frente;
         public final Animation gancho_derecha_frente;
         public final Animation bloqueo_frente;
+        public final Animation golpeado_frente;
         
         public final Animation pivotando_espalda;
         public final Animation directo_izquierda_espalda;
         public final Animation directo_derecha_espalda;
+        public final Animation esquivar_izquierda_espalda;
+        public final Animation esquivar_derecha_espalda;
         public final Animation gancho_izquierda_espalda;
         public final Animation gancho_derecha_espalda;
         public final Animation bloqueo_espalda;
+        public final Animation golpeado_espalda;
         
         public AssetsJESSI(TextureAtlas atlas) {
             //PERSONAJE DE FRENTE
@@ -248,6 +411,27 @@ public class Assets implements Disposable,AssetErrorListener {
             accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_BLOQUEO));
             accion_bloquear_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));            
             bloqueo_frente=new Animation(Constantes.BLOQUEO_LOOP,accion_bloquear_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_derecha_frente = new Array<AtlasRegion>();            
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_ESQUIVAR_DERECHA));
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_ESQUIVAR_DERECHA));            
+            accion_esquivar_derecha_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));            
+            esquivar_derecha_frente=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_derecha_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_izquierda_frente = new Array<AtlasRegion>();            
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));            
+            esquivar_izquierda_frente=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_izquierda_frente,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_golpeado_frente = new Array<AtlasRegion>();            
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_GOLPEADO));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_PIVOTAR_0));
+            accion_golpeado_frente.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_FRENTE_GOLPEADO));            
+            golpeado_frente=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_frente,Animation.PlayMode.LOOP);
             
             //PERSONAJE DE ESPALDA
             
@@ -295,8 +479,30 @@ public class Assets implements Disposable,AssetErrorListener {
             accion_bloquear_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));            
             bloqueo_espalda=new Animation(Constantes.BLOQUEO_LOOP,accion_bloquear_espalda,Animation.PlayMode.LOOP);
             
+            Array<AtlasRegion> accion_esquivar_derecha_espalda = new Array<AtlasRegion>();            
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_ESQUIVAR_DERECHA));
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_ESQUIVAR_DERECHA));            
+            accion_esquivar_derecha_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));            
+            esquivar_derecha_espalda=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_derecha_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_esquivar_izquierda_espalda = new Array<AtlasRegion>();            
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_ESQUIVAR_IZQUIERDA));    
+            accion_esquivar_izquierda_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));            
+            esquivar_izquierda_espalda=new Animation(Constantes.ESQUIVAR_LOOP,accion_esquivar_izquierda_espalda,Animation.PlayMode.LOOP);
+            
+            Array<AtlasRegion> accion_golpeado_espalda = new Array<AtlasRegion>();            
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_GOLPEADO));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_PIVOTAR_0));
+            accion_golpeado_espalda.add(atlas.findRegion(Constantes.BOXEADORA_JESSI_ESPALDA_GOLPEADO));                        
+            golpeado_espalda=new Animation(Constantes.GOLPEADO_LOOP,accion_golpeado_espalda,Animation.PlayMode.LOOP);
+            
         }
     }
+    
     public class AssetsCECILIA{
         public AssetsCECILIA(TextureAtlas atlas) {
         }

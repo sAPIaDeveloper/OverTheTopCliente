@@ -113,55 +113,103 @@ public class Constantes {
     public static final float FOCO_LOOP_DURATION = 0.1f;
     public static final float PROGRESS_BAR_LOOP_DURATION = 0.1f;
     
-    public static String TEXTURE_ATLAS_MOVIMIENTOS_BOXEADORES="Boxeadores/boxeadora_jessi.pack";
+    public static String TEXTURE_ATLAS_MOVIMIENTOS_JESSI="Boxeadores/boxeadora_jessi.pack";
+    public static String TEXTURE_ATLAS_MOVIMIENTOS_KATE="Boxeadores/boxeadora_kate.pack";
     
     //BOXEADORA_JESSI_FRENTE
-    public static String BOXEADORA_JESSI_FRENTE_PIVOTAR_0="boxeadora_jessi_frente_pivotar_0";
-    public static String BOXEADORA_JESSI_FRENTE_PIVOTAR_1="boxeadora_jessi_frente_pivotar_1";
+    public static String BOXEADORA_JESSI_FRENTE_PIVOTAR_0="boxeadora_jessi_frente_pivotar_cero";
+    public static String BOXEADORA_JESSI_FRENTE_PIVOTAR_1="boxeadora_jessi_frente_pivotar_uno";
     
-    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_IZQUIERDA_0="boxeadora_jessi_frente_directo_izquierda_0";
-    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_IZQUIERDA_1="boxeadora_jessi_frente_directo_izquierda_1";
+    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_IZQUIERDA_0="boxeadora_jessi_frente_directo_izquierda_cero";
+    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_IZQUIERDA_1="boxeadora_jessi_frente_directo_izquierda_uno";
     
-    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_DERECHA_0="boxeadora_jessi_frente_directo_derecha_0";
-    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_DERECHA_1="boxeadora_jessi_frente_directo_derecha_1";
+    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_DERECHA_0="boxeadora_jessi_frente_directo_derecha_cero";
+    public static String BOXEADORA_JESSI_FRENTE_DIRECTO_DERECHA_1="boxeadora_jessi_frente_directo_derecha_uno";
     
     public static String BOXEADORA_JESSI_FRENTE_BLOQUEO="boxeadora_jessi_frente_bloqueo";
+    public static String BOXEADORA_JESSI_FRENTE_GOLPEADO="boxeadora_jessi_frente_golpeado";
     
-    public static String BOXEADORA_JESSI_FRENTE_GANCHO_IZQUIERDA_0="boxeadora_jessi_frente_gancho_izquierda_0";
-    public static String BOXEADORA_JESSI_FRENTE_GANCHO_IZQUIERDA_1="boxeadora_jessi_frente_gancho_izquierda_1";
+    public static String BOXEADORA_JESSI_FRENTE_GANCHO_IZQUIERDA_0="boxeadora_jessi_frente_gancho_izquierda_cero";
+    public static String BOXEADORA_JESSI_FRENTE_GANCHO_IZQUIERDA_1="boxeadora_jessi_frente_gancho_izquierda_uno";
     
-    public static String BOXEADORA_JESSI_FRENTE_GANCHO_DERECHA_0="boxeadora_jessi_frente_gancho_derecha_0";
-    public static String BOXEADORA_JESSI_FRENTE_GANCHO_DERECHA_1="boxeadora_jessi_frente_gancho_derecha_1";
+    public static String BOXEADORA_JESSI_FRENTE_GANCHO_DERECHA_0="boxeadora_jessi_frente_gancho_derecha_cero";
+    public static String BOXEADORA_JESSI_FRENTE_GANCHO_DERECHA_1="boxeadora_jessi_frente_gancho_derecha_uno";
     
-    public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_DERECHA="";
-    public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_IZQUIERDA="";
+    public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_DERECHA="boxeadora_jessi_frente_esquivar_derecha";
+    public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_IZQUIERDA="boxeadora_jessi_frente_esquivar_izquierda";
     
     //BOXEADORA_JESSI_ESPALDA
-    public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_0="boxeadora_jessi_espalda_pivotar_0";
-    public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_1="boxeadora_jessi_espalda_pivotar_1";
+    public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_0="boxeadora_jessi_espalda_pivotar_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_1="boxeadora_jessi_espalda_pivotar_uno";
     
-    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_IZQUIERDA_0="boxeadora_jessi_espalda_directo_izquierda_0";
-    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_IZQUIERDA_1="boxeadora_jessi_espalda_directo_izquierda_1";
+    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_IZQUIERDA_0="boxeadora_jessi_espalda_directo_izquierda_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_IZQUIERDA_1="boxeadora_jessi_espalda_directo_izquierda_uno";
     
-    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_DERECHA_0="boxeadora_jessi_espalda_directo_derecha_0";
-    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_DERECHA_1="boxeadora_jessi_espalda_directo_derecha_1";
+    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_DERECHA_0="boxeadora_jessi_espalda_directo_derecha_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_DIRECTO_DERECHA_1="boxeadora_jessi_espalda_directo_derecha_uno";
     
     public static String BOXEADORA_JESSI_ESPALDA_BLOQUEO="boxeadora_jessi_espalda_bloqueo";
+    public static String BOXEADORA_JESSI_ESPALDA_GOLPEADO="boxeadora_jessi_espalda_golpeado";
     
-    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_IZQUIERDA_0="boxeadora_jessi_espalda_gancho_izquierda_0";
-    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_IZQUIERDA_1="boxeadora_jessi_espalda_gancho_izquierda_1";
+    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_IZQUIERDA_0="boxeadora_jessi_espalda_gancho_izquierda_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_IZQUIERDA_1="boxeadora_jessi_espalda_gancho_izquierda_uno";
     
-    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_DERECHA_0="boxeadora_jessi_espalda_gancho_derecha_0";
-    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_DERECHA_1="boxeadora_jessi_espalda_gancho_derecha_1";
+    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_DERECHA_0="boxeadora_jessi_espalda_gancho_derecha_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_GANCHO_DERECHA_1="boxeadora_jessi_espalda_gancho_derecha_uno";
     
-    public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_DERECHA="";
-    public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_IZQUIERDA="";
+    public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_DERECHA="boxeadora_jessi_espalda_esquivar_derecha";
+    public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_IZQUIERDA="boxeadora_jessi_espalda_esquivar_izquierda";
+     
+    //BOXEADORA_KATE_FRENTE
+    public static String BOXEADORA_KATE_FRENTE_PIVOTAR_0="boxeadora_kate_frente_pivotar_cero";
+    public static String BOXEADORA_KATE_FRENTE_PIVOTAR_1="boxeadora_kate_frente_pivotar_uno";
     
+    public static String BOXEADORA_KATE_FRENTE_DIRECTO_IZQUIERDA_0="boxeadora_kate_frente_directo_izquierda_cero";
+    public static String BOXEADORA_KATE_FRENTE_DIRECTO_IZQUIERDA_1="boxeadora_kate_frente_directo_izquierda_uno";
+    
+    public static String BOXEADORA_KATE_FRENTE_DIRECTO_DERECHA_0="boxeadora_kate_frente_directo_derecha_cero";
+    public static String BOXEADORA_KATE_FRENTE_DIRECTO_DERECHA_1="boxeadora_kate_frente_directo_derecha_uno";
+    
+    public static String BOXEADORA_KATE_FRENTE_BLOQUEO="boxeadora_kate_frente_bloqueo";
+    public static String BOXEADORA_KATE_FRENTE_GOLPEADO="boxeadora_kate_frente_golpeado";
+    
+    public static String BOXEADORA_KATE_FRENTE_GANCHO_IZQUIERDA_0="boxeadora_kate_frente_gancho_izquierda_cero";
+    public static String BOXEADORA_KATE_FRENTE_GANCHO_IZQUIERDA_1="boxeadora_kate_frente_gancho_izquierda_uno";
+    
+    public static String BOXEADORA_KATE_FRENTE_GANCHO_DERECHA_0="boxeadora_kate_frente_gancho_derecha_cero";
+    public static String BOXEADORA_KATE_FRENTE_GANCHO_DERECHA_1="boxeadora_kate_frente_gancho_derecha_uno";
+    
+    public static String BOXEADORA_KATE_FRENTE_ESQUIVAR_DERECHA="boxeadora_kate_frente_esquivar_derecha";
+    public static String BOXEADORA_KATE_FRENTE_ESQUIVAR_IZQUIERDA="boxeadora_kate_frente_esquivar_derecha";
+    
+    //BOXEADORA_KATE_ESPALDA
+    public static String BOXEADORA_KATE_ESPALDA_PIVOTAR_0="boxeadora_kate_espalda_pivotar_cero";
+    public static String BOXEADORA_KATE_ESPALDA_PIVOTAR_1="boxeadora_kate_espalda_pivotar_uno";
+    
+    public static String BOXEADORA_KATE_ESPALDA_DIRECTO_IZQUIERDA_0="boxeadora_kate_espalda_directo_izquierda_cero";
+    public static String BOXEADORA_KATE_ESPALDA_DIRECTO_IZQUIERDA_1="boxeadora_kate_espalda_directo_izquierda_uno";
+    
+    public static String BOXEADORA_KATE_ESPALDA_DIRECTO_DERECHA_0="boxeadora_kate_espalda_directo_derecha_cero";
+    public static String BOXEADORA_KATE_ESPALDA_DIRECTO_DERECHA_1="boxeadora_kate_espalda_directo_derecha_uno";
+    
+    public static String BOXEADORA_KATE_ESPALDA_BLOQUEO="boxeadora_kate_espalda_bloqueo";
+    public static String BOXEADORA_KATE_ESPALDA_GOLPEADO="boxeadora_kate_espalda_golpeado";
+    
+    public static String BOXEADORA_KATE_ESPALDA_GANCHO_IZQUIERDA_0="boxeadora_kate_espalda_gancho_izquierda_cero";
+    public static String BOXEADORA_KATE_ESPALDA_GANCHO_IZQUIERDA_1="boxeadora_kate_espalda_gancho_izquierda_uno";
+    
+    public static String BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_0="boxeadora_kate_espalda_gancho_derecha_cero";
+    public static String BOXEADORA_KATE_ESPALDA_GANCHO_DERECHA_1="boxeadora_kate_espalda_gancho_derecha_uno";
+    
+    public static String BOXEADORA_KATE_ESPALDA_ESQUIVAR_DERECHA="boxeadora_kate_espalda_esquivar_derecha";
+    public static String BOXEADORA_KATE_ESPALDA_ESQUIVAR_IZQUIERDA="boxeadora_kate_espalda_esquivar_izquierda";
     
     public static float PIVOTEO_LOOP=0.5f;
-    public static float DIRECTO_LOOP=0.4f;
-    public static float GANCHO_LOOP=0.7f;
+    public static float DIRECTO_LOOP=0.3f;
+    public static float GANCHO_LOOP=0.5f;
     public static float BLOQUEO_LOOP=0.5f;
+    public static float ESQUIVAR_LOOP=0.5f;
+    public static float GOLPEADO_LOOP=0.3f;
     //CONSTANTES DE CONEXIONES
     
     public static String IP="localhost";
