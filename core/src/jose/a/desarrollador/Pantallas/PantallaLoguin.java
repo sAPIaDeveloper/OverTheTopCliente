@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import static com.badlogic.gdx.graphics.Color.*;
 import com.badlogic.gdx.graphics.GL20;
@@ -15,8 +16,6 @@ import com.badlogic.gdx.graphics.Pixmap;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator;
-import com.badlogic.gdx.graphics.g2d.freetype.FreeTypeFontGenerator.FreeTypeFontParameter;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
 import com.badlogic.gdx.scenes.scene2d.ui.Image;
@@ -30,8 +29,6 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
-import com.badlogic.gdx.utils.viewport.ExtendViewport;
-import com.badlogic.gdx.utils.viewport.Viewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -69,6 +66,7 @@ public class PantallaLoguin extends ScreenAdapter {
     BitmapFont font;
     Table tabla;    
     private Skin ui;
+    Sound click;
     TextureAtlas atlas;
     Label error;
     Pixmap cursorColor;
@@ -83,7 +81,7 @@ public class PantallaLoguin extends ScreenAdapter {
         Assets.instance.init(am);
         
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
-        
+        click = Assets.instance.assetsSonido.click_boton;
         stage=new Stage();                   
         Gdx.input.setInputProcessor(stage);//Para que detecte los eventos de raton
         
@@ -141,7 +139,8 @@ public class PantallaLoguin extends ScreenAdapter {
         
         boton_registro.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 String texto_email=email.getText();
                  String texto_contrasena=contrasena.getText();    
                  if(texto_email.equals("") | texto_contrasena.equals("")){
@@ -162,7 +161,8 @@ public class PantallaLoguin extends ScreenAdapter {
         
         boton_login.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 String texto_email=email.getText().trim();
                 String texto_contrasena=contrasena.getText().trim();
                 if(texto_email.equals("") | texto_contrasena.equals("")){

@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import static com.badlogic.gdx.graphics.Color.BLACK;
 import static com.badlogic.gdx.graphics.Color.WHITE;
@@ -57,6 +58,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
     TextureAtlas atlasUi;
     private Skin ui;
     Pixmap cursorColor;
+    Sound click;
     
     LabelStyle label;
     LabelStyle style_error;
@@ -90,7 +92,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
-        
+        click = Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         
         atlasUi=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
@@ -156,7 +158,8 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         
         crear_competicion.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {  
+                click.play(100);                
                 String texto_nombre=nombre.getText().trim();
                 String texto_fecha=fecha_comienzo.getText().trim();
                 if(!texto_nombre.equals("") && !texto_fecha.equals("")){
@@ -170,7 +173,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
                             String categoria=spinner_categorias.getSelected();
                             //Enviar datos para registrar
                             enviarDatos(texto_nombre,texto_fecha,categoria,8);
-                            
+                             
                         }
                         
                         
@@ -194,7 +197,8 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         atras=new TextButton("ATRAS",textButtonStyle);
         atras.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {
+                click.play(100);
                 principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
             }
 

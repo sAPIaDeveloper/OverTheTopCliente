@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.Pixmap;
@@ -56,7 +57,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
     TextureAtlas atlasUi;
     Table tabla;  
     private Skin ui;
-    
+    Sound click;
     
     TextFieldStyle textFieldStyle;
     TextField nombre;
@@ -105,6 +106,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
+        click = Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         atlasUi=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
         ui=new Skin(atlasUi);
@@ -181,6 +183,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         aceptar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 System.out.println("Nacionalidad: "+paises.get(indice_pais));
                 if(nombre.getText().equals("") || peso.getText().equals("")){
                     error.setText("Todos los campos deben estar relleno");
@@ -208,6 +211,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         atras.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                principal.setScreen(new PantallaElegirPersonaje(principal));
             }
 

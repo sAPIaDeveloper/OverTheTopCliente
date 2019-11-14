@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -53,7 +54,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
     Table tabla;  
     private Skin ui;
     private Skin boxin;
-    
+    Sound click;
     
     TextField.TextFieldStyle textFieldStyle;
     TextField nombre;
@@ -117,6 +118,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
+        click = Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         atlasUi=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);        
         ui=new Skin(atlasUi);
@@ -204,7 +206,8 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         atras=new TextButton("ATRAS",textButtonStyle);
         atras.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador_antiguo));
             }
 
@@ -213,7 +216,8 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         aceptar=new TextButton("ACEPTAR",textButtonStyle);
         aceptar.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {
+                click.play(100);
                if(comprobarErrores()){
                    char l;
                    if(boxeadores.get(indice_boxeadores).contains("Boxeadora")){
@@ -228,6 +232,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         borrar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 final Table tabla2= new Table();
                 Label mensaje_seguridad= new Label("¿Seguro que desea borrar el boxeador y todos sus datos?. Esta accion no se podra deshacer",label);
                 mensaje_seguridad.setWrap(true);
@@ -235,17 +240,19 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
                 TextButton cancelar_borrar=new TextButton("CANCELAR",textButtonStyle);
                 cancelar_borrar.addListener(new ClickListener(){
                     @Override
-                    public void clicked(InputEvent event, float x, float y) {                  
-                       tabla2.remove();
+                    public void clicked(InputEvent event, float x, float y) {  
+                        click.play(100);
+                        tabla2.remove();
                     }
 
                 });
                 
                 aceptar_borrar.addListener(new ClickListener(){
                     @Override
-                    public void clicked(InputEvent event, float x, float y) {                  
-                       tabla2.remove();
-                       borrarBoxeador(nombre_boxeador_antiguo);
+                    public void clicked(InputEvent event, float x, float y) {  
+                        click.play(100);
+                        tabla2.remove();
+                        borrarBoxeador(nombre_boxeador_antiguo);
                     }
 
                 });
@@ -289,7 +296,8 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         
         izquierdaB.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                indice_pais--;
                if(indice_pais<0){
                    indice_pais=paises.size()-1;
@@ -302,7 +310,8 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         
         derechaB.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {  
+                click.play(100);
                 indice_pais++;
                 if(indice_pais==paises.size()){
                    indice_pais=0;
@@ -322,7 +331,8 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         
         izquierdaBx.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {
+                click.play(100);
                indice_boxeadores--;
                if(indice_boxeadores<0){
                    indice_boxeadores=boxeadores.size()-1;
@@ -337,6 +347,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         derechaBx.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
+                click.play(100);
                 
                 indice_boxeadores++;
                 if(indice_boxeadores==boxeadores.size()){

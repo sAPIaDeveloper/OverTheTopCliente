@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -43,6 +44,7 @@ public class PantallaResumenCombate extends ScreenAdapter{
     Table tabla;  
     private Skin ui;
     private Skin boxin;
+    Sound click;
     
     Label.LabelStyle label;
     Label nombre_p1;
@@ -90,6 +92,7 @@ public class PantallaResumenCombate extends ScreenAdapter{
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
+        click = Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         atlasUi=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);        
         ui=new Skin(atlasUi);
@@ -187,7 +190,8 @@ public class PantallaResumenCombate extends ScreenAdapter{
         aceptar=new TextButton("ACEPTAR",textButtonStyleAceptar);
         aceptar.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                principal.setScreen(new PantallaAccionesBoxeador(principal,player1.getNombre_boxeador()));
             }
 
@@ -215,7 +219,7 @@ public class PantallaResumenCombate extends ScreenAdapter{
     public void crearTabla(){
      
         tabla= new Table();
-        tabla.setDebug(true); 
+         
         tabla.setFillParent(true);
         
         tabla.add(nombre_p1).colspan(2).align(Align.center);

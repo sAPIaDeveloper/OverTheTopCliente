@@ -43,6 +43,8 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
     TextButton atras;
     TextButton siguiente;
     Sound sonidoVoz;
+    Sound click;
+    
     public PantallaElegirPersonaje(Principal principal) {
         this.principal=principal;
         
@@ -58,7 +60,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
         //Crear la fuente
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
-        
+        click = (Sound) Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         
         TextureAtlas atlasRetrato=new TextureAtlas(Constantes.TEXTURE_ATLAS_ROSTRO_BOXEADORES);
@@ -85,7 +87,8 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
         
         atras.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {  
+                click.play(100);
                 cambiarPantalla("atras");
             }
 
@@ -93,7 +96,8 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
         
         siguiente.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {  
+                click.play(100);
                 if(!tipo_boxeador.isEmpty()){
                     if(sonidoVoz == null){
                         cambiarPantalla("siguiente");

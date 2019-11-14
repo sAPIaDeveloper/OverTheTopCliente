@@ -8,14 +8,13 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
-import com.badlogic.gdx.graphics.OrthographicCamera;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
-import com.badlogic.gdx.graphics.glutils.ShapeRenderer;
 import com.badlogic.gdx.math.MathUtils;
 import com.badlogic.gdx.utils.TimeUtils;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -47,6 +46,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     long walkStartTime;
     TextureRegion saco;
     TextureRegion barra_progreso;
+    Sound golpeo;
     ESTADOS estado_saco;
     boolean animacion_terminada;
     int animacion_mostrar;
@@ -204,6 +204,14 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
                 switch(datos[1]){
                     case "DIRECTO": case "GANCHO_IZQUIERDA": case "GANCHO_DERECHA":
                         estado_saco=ESTADOS.DIRECTO_DERECHA;
+                        int random=(int) (Math.random()*10+1);
+                                
+                        if(random>5){
+                            golpeo = Assets.instance.assetsSonido.golpeo_uno;
+                        }else{
+                            golpeo = Assets.instance.assetsSonido.golpeo_dos;
+                        }
+                        golpeo.play(100);
                         break;
                         
                     default:                        

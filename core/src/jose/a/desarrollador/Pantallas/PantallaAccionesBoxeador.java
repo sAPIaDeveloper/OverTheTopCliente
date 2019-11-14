@@ -8,8 +8,8 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
-import static com.badlogic.gdx.graphics.Color.BLACK;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -55,6 +55,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     
     BitmapFont font;
     private Skin ui;
+    
+    Sound click;
 
     public PantallaAccionesBoxeador(final Principal principal, final String nombre_boxeador) {
         this.principal = principal;
@@ -75,7 +77,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         
         TextureAtlas atlas=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
         ui=new Skin(atlas);
-        
+        click = Assets.instance.assetsSonido.click_boton;
         crearBotones();
         crearSpinner();
         crearTabla();
@@ -100,6 +102,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("nombre: "+nombre_boxeador);
                // if(){}//comprobar que esta seleccionada la competicion
+               click.play(100);
                 principal.setScreen(new PantallaEmparejamiento(principal,nombre_boxeador,spinner_competiciones.getSelected()));
             }
 
@@ -108,7 +111,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_crear_competicion=new TextButton("CREAR COMPETICION",textButtonStyle);
         boton_crear_competicion.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {       
+                click.play(100);
                 principal.setScreen(new PantallaCrearCompeticiones(principal,nombre_boxeador));
             }
 
@@ -117,7 +121,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_apuntarse_competicion=new TextButton("APUNTARSE EN COMPETICION",textButtonStyle);
         boton_apuntarse_competicion.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {   
+                click.play(100);
                 principal.setScreen(new PantallaApuntarseCompeticion(principal,nombre_boxeador));
             }
 
@@ -126,7 +131,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_consultar_campeonatos=new TextButton("CONSULTAR MIS COMPETICIONES",textButtonStyle);
         boton_consultar_campeonatos.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {  
+                click.play(100);                
                 principal.setScreen(new PantallaConsultarMisCampeonatos(principal,nombre_boxeador));
             }
 
@@ -135,7 +141,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_estadisticas=new TextButton("CONSULTAR  ESTADISTICAS",textButtonStyle);
         boton_estadisticas.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 principal.setScreen(new PantallaMostrarEstadisticasBoxeador(principal,nombre_boxeador));
             }
 
@@ -144,7 +151,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_modificar_datos_boxeador=new TextButton("MODIFICAR DATOS",textButtonStyle);
         boton_modificar_datos_boxeador.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 principal.setScreen(new PantallaModificarDatosBoxeador(principal,nombre_boxeador));
             }
 
@@ -153,7 +161,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_cambiar_boxeador=new TextButton("CAMBIAR DE BOXEADOR",textButtonStyle);
         boton_cambiar_boxeador.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) { 
+                click.play(100);
                 principal.setScreen(new PantallaSeleccionOCreacionPersonaje(principal));
             }
 

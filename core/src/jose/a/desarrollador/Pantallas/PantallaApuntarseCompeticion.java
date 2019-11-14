@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -64,6 +65,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
     TextButton aceptar;
     TextButton cancelar;
 
+    Sound click;
     public PantallaApuntarseCompeticion(Principal principal, String nombre_boxeador) {
         this.principal = principal;
         this.nombre_boxeador = nombre_boxeador;
@@ -83,7 +85,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
-        
+        click = Assets.instance.assetsSonido.click_boton;
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
                 
         crearLabels();        
@@ -146,7 +148,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if(offsetConsulta < 0){
                    offsetConsulta = 0;
                }
-               
+               click.play(100);
                pedirCompeticiones();
             }
 
@@ -160,6 +162,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if((offsetConsulta + 5)< maximoFilas){
                    offsetConsulta += 5;   
                }
+               click.play(100);
                 System.out.println("Offset: "+offsetConsulta);
                pedirCompeticiones();
             }
@@ -169,7 +172,8 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         cancelar=new TextButton("CANCELAR",textButtonStyle);
         cancelar.addListener(new ClickListener(){
             @Override
-            public void clicked(InputEvent event, float x, float y) {                  
+            public void clicked(InputEvent event, float x, float y) {    
+                click.play(100);
                principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
             }
 
@@ -182,6 +186,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if(nombre_competicion.equals("")){                   
                    error.setText("No tiene seleccionada ninguna competicion");
                }else{
+                   click.play(100);
                    error.setText("");
                    registrarEnCompeticion();
                }

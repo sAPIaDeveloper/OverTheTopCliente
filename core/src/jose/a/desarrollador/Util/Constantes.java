@@ -72,6 +72,7 @@ public class Constantes {
     public static String FONDO_2="fondo_dos";
     public static String FONDO_3="fondo_tres";
     public static String TATAMI="tatami";
+    public static String SANGRE="sangre";
     
     public static String LOGO="logo";
     public static String FINISH="finish";
@@ -138,6 +139,17 @@ public class Constantes {
     public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_DERECHA="boxeadora_jessi_frente_esquivar_derecha";
     public static String BOXEADORA_JESSI_FRENTE_ESQUIVAR_IZQUIERDA="boxeadora_jessi_frente_esquivar_izquierda";
     
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_0="boxeadora_jessi_frente_descomponer_cero";
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_1="boxeadora_jessi_frente_descomponer_uno";
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_2="boxeadora_jessi_frente_descomponer_dos";
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_3="boxeadora_jessi_frente_descomponer_tres";
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_4="boxeadora_jessi_frente_descomponer_cuatro";
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_5="boxeadora_jessi_frente_descomponer_cinco";    
+    public static String BOXEADORA_JESSI_FRENTE_DESCOMPONER_6="boxeadora_jessi_frente_descomponer_seis";
+    
+    
+    
+    
     //BOXEADORA_JESSI_ESPALDA
     public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_0="boxeadora_jessi_espalda_pivotar_cero";
     public static String BOXEADORA_JESSI_ESPALDA_PIVOTAR_1="boxeadora_jessi_espalda_pivotar_uno";
@@ -159,6 +171,13 @@ public class Constantes {
     
     public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_DERECHA="boxeadora_jessi_espalda_esquivar_derecha";
     public static String BOXEADORA_JESSI_ESPALDA_ESQUIVAR_IZQUIERDA="boxeadora_jessi_espalda_esquivar_izquierda";
+    
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_0="boxeadora_jessi_espalda_descomponer_cero";
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_1="boxeadora_jessi_espalda_descomponer_uno";
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_2="boxeadora_jessi_espalda_descomponer_dos";
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_3="boxeadora_jessi_espalda_descomponer_tres";
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_4="boxeadora_jessi_espalda_descomponer_cuatro";
+    public static String BOXEADORA_JESSI_ESPALDA_DESCOMPONER_5="boxeadora_jessi_espalda_descomponer_cinco"; 
      
     //BOXEADORA_KATE_FRENTE
     public static String BOXEADORA_KATE_FRENTE_PIVOTAR_0="boxeadora_kate_frente_pivotar_cero";
@@ -182,6 +201,13 @@ public class Constantes {
     public static String BOXEADORA_KATE_FRENTE_ESQUIVAR_DERECHA="boxeadora_kate_frente_esquivar_derecha";
     public static String BOXEADORA_KATE_FRENTE_ESQUIVAR_IZQUIERDA="boxeadora_kate_frente_esquivar_derecha";
     
+    public static String BOXEADORA_KATE_FRENTE_DESCOMPONER_0="boxeadora_kate_frente_descomponer_cero";
+    public static String BOXEADORA_KATE_FRENTE_DESCOMPONER_1="boxeadora_kate_frente_descomponer_uno";
+    public static String BOXEADORA_KATE_FRENTE_DESCOMPONER_2="boxeadora_kate_frente_descomponer_dos";
+    public static String BOXEADORA_KATE_FRENTE_DESCOMPONER_3="boxeadora_kate_frente_descomponer_tres";
+    public static String BOXEADORA_KATE_FRENTE_DESCOMPONER_4="boxeadora_kate_frente_descomponer_cuatro";
+    
+    
     //BOXEADORA_KATE_ESPALDA
     public static String BOXEADORA_KATE_ESPALDA_PIVOTAR_0="boxeadora_kate_espalda_pivotar_cero";
     public static String BOXEADORA_KATE_ESPALDA_PIVOTAR_1="boxeadora_kate_espalda_pivotar_uno";
@@ -204,12 +230,19 @@ public class Constantes {
     public static String BOXEADORA_KATE_ESPALDA_ESQUIVAR_DERECHA="boxeadora_kate_espalda_esquivar_derecha";
     public static String BOXEADORA_KATE_ESPALDA_ESQUIVAR_IZQUIERDA="boxeadora_kate_espalda_esquivar_izquierda";
     
+    public static String BOXEADORA_KATE_ESPALDA_DESCOMPONER_0="boxeadora_kate_espalda_descomponer_cero";
+    public static String BOXEADORA_KATE_ESPALDA_DESCOMPONER_1="boxeadora_kate_espalda_descomponer_uno";
+    public static String BOXEADORA_KATE_ESPALDA_DESCOMPONER_2="boxeadora_kate_espalda_descomponer_dos";
+    public static String BOXEADORA_KATE_ESPALDA_DESCOMPONER_3="boxeadora_kate_espalda_descomponer_tres";
+    public static String BOXEADORA_KATE_ESPALDA_DESCOMPONER_4="boxeadora_kate_espalda_descomponer_cuatro";
+    
     public static float PIVOTEO_LOOP=0.5f;
     public static float DIRECTO_LOOP=0.3f;
     public static float GANCHO_LOOP=0.5f;
     public static float BLOQUEO_LOOP=0.5f;
     public static float ESQUIVAR_LOOP=0.5f;
     public static float GOLPEADO_LOOP=0.3f;
+    public static float DERROTADO=0.2f;
     //CONSTANTES DE CONEXIONES
     
     public static String IP="localhost";
@@ -223,6 +256,15 @@ public class Constantes {
     public static String VOZ_JOHN="Sonido/voz_john.wav";
     public static String VOZ_KATE="Sonido/voz_kate.wav";
     public static String VOZ_NEGRO="Sonido/voz_negro.wav";
+    
+    
+    public static String SONIDO_BOTON="Sonido/click_boton.wav";
+    public static String SONIDO_EMPEZAR_ASALTO="Sonido/empiezo_asalto.wav";
+    public static String SONIDO_EMPEZAR_COMBATE="Sonido/empiezo_combate.wav";
+    public static String SONIDO_KO="Sonido/ganar_combate.wav";
+    public static String SONIDO_PERDER_COMBATE="Sonido/perder_combate.wav";
+    public static String SONIDO_GOLPEO_UNO="Sonido/golpeo_uno.wav";
+    public static String SONIDO_GOLPEO_DOS="Sonido/golpeo_dos.wav";
     
     // Información del jugador
     

@@ -8,9 +8,11 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.math.Vector2;
@@ -52,7 +54,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
     private BufferedReader in= null;
     private PrintWriter out= null;
     
-    private SpriteBatch spriteBatch;
+    private SpriteBatch spriteBatch;    
     private ExtendViewport extendViewport;
     private long walkStartTime;
     int tiempoMax;
@@ -67,13 +69,16 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
     private PlayerCliente contrincante;
 
     TextureRegion finish; 
+    TextureRegion sangre; 
+    Sprite imagen_sangre;
     boolean combateTerminado;
     float scale;
+    float transpareciaSangre;
     float velocidad_rotacion;
     Vector2 posicion_finish;
     long empiezo_finish;
     int rotacion;
-    
+    Sound sonido;
     public PantallaDesarrolloDelCombate(Principal principal, Socket socketJugador, String nombre_boxeador, String nombre_adversario, String tipo_boxeador_propio, String tipo_boxeador_adversario) {
         this.principal = principal;
         this.socketJugador = socketJugador;
@@ -93,7 +98,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         Assets.instance.init(am);
         combateTerminado = false;
         extendViewport = new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
-        spriteBatch =new SpriteBatch();
+        spriteBatch =new SpriteBatch();        
         publico = new Publico();        
         tatami = new Tatami();
         hud = new BoxeadoresHUD(nombre_boxeador,nombre_adversario);
@@ -113,16 +118,18 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         
         posicion_finish = new Vector2();
         finish= (TextureRegion) Assets.instance.screen.finish;
+        sangre= (TextureRegion) Assets.instance.screen.sangre;
         System.out.println(posicion_finish+""+finish);
         posicion_finish.x = (extendViewport.getWorldWidth() / 2 + finish.getRegionWidth() / 2);
         posicion_finish.y = (extendViewport.getWorldHeight() + finish.getRegionHeight()*2);
-        
+        transpareciaSangre = 0;
         asalto = 1;
         scale = 0;
         velocidad_rotacion = 10;
         rotacion = 10;
         
-        
+        sonido = Assets.instance.assetsSonido.empezar_combate;
+        sonido.play(100);
         empiezo = TimeUtils.millis();
     }
 
@@ -151,6 +158,12 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
        
         contrincante.render(spriteBatch,accion_contrincante);
         boxeador.render(spriteBatch,accion_boxeador);
+        
+        imagen_sangre= new Sprite(sangre);
+        imagen_sangre.setSize(extendViewport.getWorldWidth(), extendViewport.getWorldHeight());
+        imagen_sangre.setAlpha(transpareciaSangre);
+        
+         imagen_sangre.draw(spriteBatch);
         
         if(combateTerminado){
             
@@ -181,14 +194,23 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         spriteBatch.end();
         
     }
-    
-    
-    public void update(){                
+        
+    public void update(){  
+        if(boxeador.getVida() <120 && boxeador.getVida() >70){
+            transpareciaSangre = 0.4f;
+        }else if(boxeador.getVida() <70 && boxeador.getVida() >20){
+            transpareciaSangre = 0.7f;
+        }else if(boxeador.getVida() < 20){
+            transpareciaSangre = 1f;
+        }
+       
         if(tiempoTranscurrido <= 0){                
             asalto++; 
             out.println("18&"+asalto);       
             empiezo = TimeUtils.millis();
             if(asalto <= 3){
+                sonido = Assets.instance.assetsSonido.empezar_asalto; 
+                sonido.play(100);
                 round.restablecer();
             }
             
@@ -249,6 +271,14 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                 System.out.println("Termino");
                 empiezo_finish =  TimeUtils.millis();
                 combateTerminado = true;
+                if(boxeador.getVida() <= 0){
+                    sonido = Assets.instance.assetsSonido.perder_combate;
+                    accion_boxeador = "DERROTADO";
+                }else if(contrincante.getVida() <= 0){
+                    sonido = Assets.instance.assetsSonido.ganar_combate;
+                    accion_contrincante = "DERROTADO";
+                }
+                sonido.play(100);
                 ganador = datos[1];
                 break;
              
@@ -258,16 +288,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
     
     public String accionAPintar(String accionBoxeador,String accionContrincante,PlayerCliente player,PlayerCliente contrincante){
         String respuesta="";
-        /*
-        PIVOTANDO,
-        BLOQUEO,
-        DIRECTO,
-        GANCHO_IZQUIERDA,
-        GANCHO_DERECHA,
-        ESQUIVAR_IZQUIERDA,
-        ESQUIVAR_DERECHA
         
-        */
         int random=(int) (Math.random()*10+1);
         switch(accionBoxeador){
             case "PIVOTANDO":
@@ -326,15 +347,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                 player.setStamina(7);
                 switch(accionContrincante){
 
-                    case "DIRECTO":
-                        if(random>5){
-                        respuesta="DIRECTO_DERECHA";
-                    }else{
-                        respuesta="DIRECTO_IZQUIERDA";
-                    }
-                    break;
-                    
-                    case "BLOQUEO":
+                    case "ESQUIVAR_DERECHA": case "ESQUIVAR_IZQUIERDA": case "BLOQUEO": case "DIRECTO":
                         if(random>5){
                         respuesta="DIRECTO_DERECHA";
                     }else{
@@ -433,6 +446,8 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             break;
             
         }
+        
+        System.out.println("Boxeador: Vida ---> "+boxeador.getVida());
         
         return respuesta;
     }

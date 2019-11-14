@@ -13,6 +13,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
+import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
@@ -36,11 +37,7 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
     Focos focos;
     Tatami tatami;
     BitmapFont font;
-    TextureRegion logo;
-   
-    // Para prueba    
-    Round round;
-    
+    TextureRegion logo;    
     float widthTexto;
     public PantallaInicio(Principal principal) {
         this.principal = principal;
@@ -60,16 +57,10 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
         font.setColor(Color.BLACK);
         
         spriteBatch = new SpriteBatch();
-        extendViewport = new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
-        System.out.println("W: "+extendViewport.getWorldWidth());
+        extendViewport = new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);        
         publico = new Publico();
         focos = new Focos();
         tatami = new Tatami();
-        
-        // Para pruebas
-        round = new Round();
-        
-        
         GlyphLayout layout = new GlyphLayout();     
         layout.setText(font,"Pulse cualquier boton para continuar");
         widthTexto = layout.width;
@@ -110,13 +101,10 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
                 logo.getRegionY(),
                 logo.getRegionWidth(),
                 logo.getRegionHeight(),
-                false,false);
-       // System.out.println(""+extendViewport.getWorldWidth());
+                false,false);       
        
         font.draw(spriteBatch, "Pulse cualquier boton para continuar", (extendViewport.getWorldWidth()/2) - (widthTexto/2), extendViewport.getWorldHeight()/5);
       
-       
-      // round.render(spriteBatch,extendViewport,1);
         spriteBatch.end();
     }
 
