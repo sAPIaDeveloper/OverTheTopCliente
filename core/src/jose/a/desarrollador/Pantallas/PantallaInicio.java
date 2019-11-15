@@ -9,27 +9,28 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.GlyphLayout;
-import com.badlogic.gdx.graphics.g2d.Sprite;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureRegion;
 import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import jose.a.desarrollador.Entidades.Focos;
 import jose.a.desarrollador.Entidades.Publico;
-import jose.a.desarrollador.Entidades.Round;
 import jose.a.desarrollador.Entidades.Tatami;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
+    Preferencias pref;
     Principal principal;
     private SpriteBatch spriteBatch;
     private ExtendViewport extendViewport;
@@ -39,6 +40,8 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
     BitmapFont font;
     TextureRegion logo;    
     float widthTexto;
+    public static Music inicio;
+    int volumen;
     public PantallaInicio(Principal principal) {
         this.principal = principal;
         
@@ -46,11 +49,17 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
     }
 
     public void init(){
+        pref = new Preferencias();
+        volumen = pref.getVolumen_musica();
         Gdx.input.setInputProcessor(this);
         
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
         
+        inicio = Assets.instance.assetsSonido.musica_inicio;
+        inicio.setLooping(true);
+        inicio.setVolume(volumen);
+        inicio.play();
         logo=(TextureRegion) Assets.instance.screen.logo;
         
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);

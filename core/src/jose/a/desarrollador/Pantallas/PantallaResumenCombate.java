@@ -22,30 +22,33 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import jose.a.desarrollador.Entidades.PlayerCliente;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaResumenCombate extends ScreenAdapter{
+    Preferencias pref;
     Principal principal;
     PlayerCliente player1;
     PlayerCliente player2;
     String nombre_ganador;
     Stage stage; 
     BitmapFont font;
-    
+    private ExtendViewport extendViewport;
     TextureAtlas atlasUi;
     TextureAtlas box;
     Table tabla;  
     private Skin ui;
     private Skin boxin;
     Sound click;
-    
+    int volumen;
     Label.LabelStyle label;
     Label nombre_p1;
     Label nombre_p2;
@@ -87,8 +90,11 @@ public class PantallaResumenCombate extends ScreenAdapter{
     }
     
     public void init(){
-        
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
         stage=new Stage();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
@@ -191,7 +197,7 @@ public class PantallaResumenCombate extends ScreenAdapter{
         aceptar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                principal.setScreen(new PantallaAccionesBoxeador(principal,player1.getNombre_boxeador()));
             }
 

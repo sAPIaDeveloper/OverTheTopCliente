@@ -21,6 +21,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.util.ArrayList;
 import java.util.TreeMap;
 import jose.a.desarrollador.Entidades.Boxeador;
@@ -42,7 +43,7 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
     private Skin boxeador;
     TextureAtlas atlasUI;
     TextureAtlas atlasRetrato;
-    
+    private ExtendViewport extendViewport;
     public PantallaSeleccionOCreacionPersonaje(Principal principal) {
         this.principal=principal;  
 
@@ -67,6 +68,8 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
                 
         
         stage=new Stage();  
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);
         
         tabla= new Table();
@@ -143,7 +146,7 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
     
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
     }
 
     @Override

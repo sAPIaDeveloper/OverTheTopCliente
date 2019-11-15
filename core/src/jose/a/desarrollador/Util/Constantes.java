@@ -33,13 +33,24 @@ public class Constantes {
     public static String ESPAÑA="Espana";
     public static String FRANCIA="Francia";
     public static String INGLATERRA="Inglaterra";
-    public static String ESPAÑA_SELECCIONADA="España_seleccionada";
-    public static String FRANCIA_SELECCIONADA="Francia_seleccionada";
-    public static String INGLATERRA_SELECCIONADA="Inglaterra_seleccionada";
+    public static String ALEMANIA="Alemania";
+    public static String COLOMBIA="Colombia";
+    public static String EEUU="EEUU";
+    public static String GRECIA="Grecia";
+    public static String JAPON="Japon";
+    public static String MADAGASCAR="Madagascar";
+    public static String MEXICO="Mexico";
+    public static String PERU="Peru";
+    public static String RUSIA="Rusia";
+    public static String SUDAFRICA="Sudafrica";
+    public static String CHILE="Chile";
     public static String FLECHA_IZQUIERDA="flecha_izq";
     public static String FLECHA_DERECHA="flecha_dcha";
     public static String FLECHA_IZQUIERDA_SELECCIONADA="flecha_izq_seleccionada";
     public static String FLECHA_DERECHA_SELECCIONADA="flecha_dcha_seleccionada";
+    public static String CHECKBOX_ACTIVADO="ckeckbox_activado";
+    public static String CHECKBOX_DESACTIVADO="ckeckbox_desactivado";
+    public static String OPCIONES="opciones";
     
     public static String TEXTURE_ATLAS_ROSTRO_BOXEADORES="Boxeadores_rostro/retrato_boxeadores.pack";
     public static String BOXEADOR_JOHN="Boxeador_john";
@@ -244,11 +255,12 @@ public class Constantes {
     public static float GOLPEADO_LOOP=0.3f;
     public static float DERROTADO=0.2f;
     //CONSTANTES DE CONEXIONES
-    
-    public static String IP="localhost";
+       
     public static int PUERTO=4444;
     
     // Assets Sonido
+    
+    public static String MUSICA_INICIO="Sonido/musica_inicio.ogg";
     
     public static String VOZ_BUZZ="Sonido/voz_buzz.wav";
     public static String VOZ_CECILIA="Sonido/voz_cecilia.wav";

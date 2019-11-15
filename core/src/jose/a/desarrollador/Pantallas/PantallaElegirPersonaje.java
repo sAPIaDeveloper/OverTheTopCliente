@@ -21,17 +21,19 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.util.ArrayList;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaElegirPersonaje extends ScreenAdapter {
-
+    Preferencias pref;
     Principal principal;
     Stage stage; 
     BitmapFont font;
@@ -43,8 +45,9 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
     TextButton atras;
     TextButton siguiente;
     Sound sonidoVoz;
+    int volumen;
     Sound click;
-    
+    private ExtendViewport extendViewport;
     public PantallaElegirPersonaje(Principal principal) {
         this.principal=principal;
         
@@ -54,7 +57,11 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
     public void init(){
         tipo_boxeador="";
         botones=new ArrayList<TextButton>();
-        stage=new Stage();              
+        stage=new Stage(); 
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         //Para que detecte los eventos de raton
         Gdx.input.setInputProcessor(stage);
         //Crear la fuente
@@ -191,7 +198,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
     }
 
     @Override
@@ -223,7 +230,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
                 break;
         }
         
-        sonidoVoz.play(100);
+        sonidoVoz.play(volumen);
     }
     
 }

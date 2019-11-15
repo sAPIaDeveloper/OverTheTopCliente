@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.assets.AssetDescriptor;
 import com.badlogic.gdx.assets.AssetErrorListener;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.g2d.Animation;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -560,6 +561,8 @@ public class Assets implements Disposable,AssetErrorListener {
         public final Sound golpeo_uno;
         public final Sound golpeo_dos;
         
+        public final Music musica_inicio;
+        
         public AssetsSonido() {
             voz_buzz = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_BUZZ));
             voz_john = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JOHN));
@@ -575,6 +578,8 @@ public class Assets implements Disposable,AssetErrorListener {
             perder_combate = Gdx.audio.newSound(Gdx.files.internal(Constantes.SONIDO_PERDER_COMBATE));
             golpeo_uno = Gdx.audio.newSound(Gdx.files.internal(Constantes.SONIDO_GOLPEO_UNO));
             golpeo_dos = Gdx.audio.newSound(Gdx.files.internal(Constantes.SONIDO_GOLPEO_DOS));
+            
+            musica_inicio = Gdx.audio.newMusic(Gdx.files.internal(Constantes.MUSICA_INICIO));
         }
         
     }

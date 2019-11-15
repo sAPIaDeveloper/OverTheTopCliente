@@ -22,6 +22,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -29,16 +30,17 @@ import java.util.ArrayList;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
-    
+    Preferencias pref;
     Principal principal;
     String nombre_boxeador;
-    
+    private ExtendViewport extendViewport;
     String [] competiciones;
     
     int posicion_boxeador;
@@ -71,7 +73,10 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
     }
     
     public void init(){
-        stage=new Stage();        
+        stage=new Stage();  
+        pref = new Preferencias();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);  
         
         AssetManager am = new AssetManager();
@@ -174,7 +179,7 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 
@@ -198,7 +203,7 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 

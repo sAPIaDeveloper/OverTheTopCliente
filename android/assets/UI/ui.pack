@@ -5,246 +5,372 @@ filter: Nearest,Nearest
 repeat: none
 tabla
   rotate: false
-  xy: 1, 718
+  xy: 1, 733
   size: 512, 288
   orig: 512, 288
   offset: 0, 0
   index: -1
+Letra_final_combate
+  rotate: false
+  xy: 1, 591
+  size: 355, 140
+  orig: 355, 140
+  offset: 0, 0
+  index: -1
 boton_add_boxeador
   rotate: false
-  xy: 1, 547
+  xy: 515, 852
   size: 300, 169
   orig: 300, 169
   offset: 0, 0
   index: -1
 boton_add_boxeador_pulsado
   rotate: false
-  xy: 515, 837
-  size: 300, 169
-  orig: 300, 169
-  offset: 0, 0
-  index: -1
-Espana
-  rotate: false
-  xy: 1, 376
+  xy: 1, 420
   size: 300, 169
   orig: 300, 169
   offset: 0, 0
   index: -1
 textField
   rotate: false
-  xy: 1, 205
+  xy: 1, 249
   size: 300, 169
   orig: 300, 169
   offset: 0, 0
   index: -1
+letra_round
+  rotate: false
+  xy: 1, 107
+  size: 327, 140
+  orig: 327, 140
+  offset: 0, 0
+  index: -1
+letra_asalto
+  rotate: false
+  xy: 1, 1
+  size: 359, 104
+  orig: 359, 104
+  offset: 0, 0
+  index: -1
+numeros_asalto
+  rotate: false
+  xy: 515, 736
+  size: 312, 114
+  orig: 312, 114
+  offset: 0, 0
+  index: -1
 stamina_barra
   rotate: false
-  xy: 515, 735
+  xy: 515, 634
   size: 350, 100
   orig: 350, 100
   offset: 0, 0
   index: -1
 vida_barra
   rotate: false
-  xy: 1, 103
+  xy: 358, 532
   size: 350, 100
   orig: 350, 100
   offset: 0, 0
   index: -1
-Francia
-  rotate: false
-  xy: 817, 894
-  size: 200, 112
-  orig: 200, 112
-  offset: 0, 0
-  index: -1
-Inglaterra
-  rotate: false
-  xy: 303, 604
-  size: 200, 112
-  orig: 200, 112
-  offset: 0, 0
-  index: -1
 corazon
   rotate: false
-  xy: 1, 1
+  xy: 817, 921
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 flecha_dcha
   rotate: false
-  xy: 303, 502
+  xy: 710, 532
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 flecha_dcha_seleccionada
   rotate: false
-  xy: 103, 1
+  xy: 919, 921
   size: 100, 100
   orig: 100, 100
+  offset: 0, 0
+  index: -1
+Alemania
+  rotate: false
+  xy: 358, 661
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+botonPantallaPrincipal
+  rotate: false
+  xy: 817, 859
+  size: 100, 60
+  orig: 100, 60
   offset: 0, 0
   index: -1
 flecha_izq
   rotate: false
-  xy: 303, 400
+  xy: 829, 757
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
+botonPantallaPrincipal_pulsado
+  rotate: false
+  xy: 919, 859
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
 flecha_izq_seleccionada
   rotate: false
-  xy: 205, 1
+  xy: 812, 532
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 rayo
   rotate: false
-  xy: 303, 298
+  xy: 303, 430
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-botonPantallaPrincipal
+Chile
   rotate: false
-  xy: 303, 236
-  size: 100, 60
-  orig: 100, 60
+  xy: 303, 358
+  size: 100, 70
+  orig: 100, 70
   offset: 0, 0
   index: -1
-botonPantallaPrincipal_pulsado
+Colombia
   rotate: false
-  xy: 405, 542
-  size: 100, 60
-  orig: 100, 60
+  xy: 405, 460
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+EEUU
+  rotate: false
+  xy: 303, 286
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Espana
+  rotate: false
+  xy: 405, 388
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Francia
+  rotate: false
+  xy: 507, 460
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Grecia
+  rotate: false
+  xy: 405, 316
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Inglaterra
+  rotate: false
+  xy: 507, 388
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Japon
+  rotate: false
+  xy: 609, 460
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Madagascar
+  rotate: false
+  xy: 507, 316
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Mexico
+  rotate: false
+  xy: 609, 388
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Peru
+  rotate: false
+  xy: 711, 460
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Rusia
+  rotate: false
+  xy: 609, 316
+  size: 100, 70
+  orig: 100, 70
+  offset: 0, 0
+  index: -1
+Sudafrica
+  rotate: false
+  xy: 711, 388
+  size: 100, 70
+  orig: 100, 70
   offset: 0, 0
   index: -1
 progress_cero
   rotate: false
-  xy: 817, 852
+  xy: 711, 346
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_cinco
   rotate: false
-  xy: 405, 500
+  xy: 813, 490
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_cuatro
   rotate: false
-  xy: 405, 458
+  xy: 813, 448
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_diez
   rotate: false
-  xy: 405, 416
+  xy: 813, 406
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_doce
   rotate: false
-  xy: 405, 374
+  xy: 813, 364
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_dos
   rotate: false
-  xy: 405, 332
+  xy: 405, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_nueve
   rotate: false
-  xy: 405, 290
+  xy: 507, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_ocho
   rotate: false
-  xy: 405, 248
+  xy: 609, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_once
   rotate: false
-  xy: 919, 852
+  xy: 711, 304
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_seis
   rotate: false
-  xy: 867, 810
+  xy: 813, 322
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_siete
   rotate: false
-  xy: 867, 768
+  xy: 711, 262
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_tres
   rotate: false
-  xy: 867, 726
+  xy: 813, 280
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_uno
   rotate: false
-  xy: 515, 693
+  xy: 813, 238
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 saco_cero
   rotate: false
-  xy: 307, 26
+  xy: 931, 782
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
 saco_cuatro
   rotate: false
-  xy: 969, 775
+  xy: 968, 782
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
 saco_dos
   rotate: false
-  xy: 505, 616
+  xy: 460, 656
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
+ckeckbox_activado
+  rotate: false
+  xy: 303, 539
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
 saco_tres
   rotate: false
-  xy: 542, 616
+  xy: 867, 680
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
 saco_uno
   rotate: false
-  xy: 579, 616
+  xy: 904, 680
   size: 35, 75
   orig: 35, 75
+  offset: 0, 0
+  index: -1
+ckeckbox_desactivado
+  rotate: false
+  xy: 941, 730
+  size: 50, 50
+  orig: 50, 50
+  offset: 0, 0
+  index: -1
+opciones
+  rotate: false
+  xy: 941, 678
+  size: 50, 50
+  orig: 50, 50
   offset: 0, 0
   index: -1

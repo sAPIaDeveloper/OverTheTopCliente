@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import static com.badlogic.gdx.graphics.Color.*;
@@ -29,6 +30,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -40,6 +42,7 @@ import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
 import jose.a.desarrollador.Util.HiloComunicacionAbierta;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  * Posibles colores de fondo:
@@ -51,10 +54,14 @@ import jose.a.desarrollador.Util.HiloComunicacionAbierta;
  */
 public class PantallaLoguin extends ScreenAdapter {
     Principal principal;
-    Stage stage;    
+    Stage stage;   
+    Preferencias pref;
+    private ExtendViewport extendViewport;
     TextButton boton_login;
     TextButton boton_registro;
     TextButtonStyle textButtonStyle;
+    TextButton boton_opciones;
+    TextButtonStyle textButtonStyleOpciones;
     TextFieldStyle textFieldStyle;
     TextField email;
     TextField contrasena;
@@ -66,7 +73,8 @@ public class PantallaLoguin extends ScreenAdapter {
     BitmapFont font;
     Table tabla;    
     private Skin ui;
-    Sound click;
+    Sound click;   
+    int volumen;
     TextureAtlas atlas;
     Label error;
     Pixmap cursorColor;
@@ -82,9 +90,12 @@ public class PantallaLoguin extends ScreenAdapter {
         
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         click = Assets.instance.assetsSonido.click_boton;
-        stage=new Stage();                   
+        stage=new Stage();  
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
         Gdx.input.setInputProcessor(stage);//Para que detecte los eventos de raton
-        
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         atlas=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
         ui=new Skin(atlas); 
         
@@ -110,7 +121,8 @@ public class PantallaLoguin extends ScreenAdapter {
         mensaje_error.font=font;
         mensaje_error.fontColor= Color.RED;
         error=new Label("",mensaje_error);
-        
+        error.setWrap(true);
+        error.setAlignment(Align.center);
         f=new LabelStyle();
         f.font=font;
         Label oneCharSizeCalibrationThrowAway = new Label("|",f);
@@ -140,7 +152,7 @@ public class PantallaLoguin extends ScreenAdapter {
         boton_registro.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 String texto_email=email.getText();
                  String texto_contrasena=contrasena.getText();    
                  if(texto_email.equals("") | texto_contrasena.equals("")){
@@ -149,7 +161,7 @@ public class PantallaLoguin extends ScreenAdapter {
                     if(formatoCorrectoCorreo(texto_email)){
                          enviarDatos(texto_email,texto_contrasena,0);
                     }else{
-                        error.setText("El formato del correo electronico es inválido");
+                        error.setText("El formato del correo electronico es invalido");
                     }
                 }
                 
@@ -162,7 +174,7 @@ public class PantallaLoguin extends ScreenAdapter {
         boton_login.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 String texto_email=email.getText().trim();
                 String texto_contrasena=contrasena.getText().trim();
                 if(texto_email.equals("") | texto_contrasena.equals("")){
@@ -175,6 +187,20 @@ public class PantallaLoguin extends ScreenAdapter {
                     }
                 }
                 
+                
+            }
+
+        });
+        
+        textButtonStyleOpciones = new TextButtonStyle();
+        textButtonStyleOpciones.up= ui.getDrawable(Constantes.OPCIONES);                
+        textButtonStyleOpciones.font = font;
+        
+        boton_opciones = new TextButton("",textButtonStyleOpciones);
+        boton_opciones.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) { 
+                principal.setScreen(new PantallaOpciones(principal));
                 
             }
 
@@ -202,9 +228,12 @@ public class PantallaLoguin extends ScreenAdapter {
     
     public void crearTabla(){
         tabla= new Table();       
-        //tabla.setBackground(ui.getDrawable(Constantes.TABLA));        
-        tabla.setSize(400, 400);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200); 
+        //tabla.setBackground(ui.getDrawable(Constantes.TABLA));  
+        tabla.setFillParent(true);
+        /*tabla.setSize(400, 400);           
+        tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200); */
+        tabla.add(boton_opciones).align(Align.right).width(30).height(30).colspan(2);
+        tabla.row().spaceTop(50);
         tabla.add(texto_email).width(50);
         tabla.add(email).width(200).height(50);
         tabla.row();
@@ -216,10 +245,10 @@ public class PantallaLoguin extends ScreenAdapter {
         
         tabla.add(error).colspan(2).height(50);
         tabla.row();  
-        tabla.add(boton_login).width(120).height(50).space(20).align(Align.left);
+        tabla.add(boton_login).width(120).height(60).space(20).align(Align.left);
         
         
-        tabla.add(boton_registro).width(120).height(50).space(20).align(Align.right);
+        tabla.add(boton_registro).width(120).height(60).space(20).align(Align.right);
     }
     
     @Override
@@ -232,8 +261,9 @@ public class PantallaLoguin extends ScreenAdapter {
     }
 
     @Override
-    public void resize(int width, int height) {
+    public void resize(int width, int height) {        
         stage.getViewport().update(width, height,true);
+        
     }
     
     public boolean formatoCorrectoCorreo(String email){        
@@ -256,19 +286,24 @@ public class PantallaLoguin extends ScreenAdapter {
         System.out.println("enviando datos...");
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
+            socketD.setSoTimeout(4000);
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
-            
+            System.out.println(socketD.isConnected());
             byte[] bufIn = new byte[256]; 
             DatagramPacket paqueteEntrada = new DatagramPacket(bufIn, bufIn.length); 
+           
             socketD.receive(paqueteEntrada);// Espero para recibir respuesta
+            System.out.println("despues");
             String recibido = new String(paqueteEntrada.getData(), 0, paqueteEntrada.getLength());
-            
+
             mostrarMensaje(recibido);
+            
+            
         } catch (Exception e) {
-            e.printStackTrace();
+            error.setText("Compruebe si ha escrito bien la direccion IP o si tiene conexion a internet");
         }
         
     }

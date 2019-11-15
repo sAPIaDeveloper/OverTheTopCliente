@@ -26,6 +26,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -35,27 +36,28 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaModificarDatosBoxeador extends ScreenAdapter{
-    
+    Preferencias pref;
     Principal principal;
     String nombre_boxeador_antiguo;
     Boxeador boxeador;
     Stage stage; 
     BitmapFont font;
     Boxeador b;
-    
+    private ExtendViewport extendViewport;
     TextureAtlas atlasUi;
     TextureAtlas box;
     Table tabla;  
     private Skin ui;
     private Skin boxin;
     Sound click;
-    
+    int volumen;
     TextField.TextFieldStyle textFieldStyle;
     TextField nombre;
     TextField peso;
@@ -102,6 +104,17 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         paises.add("Espana");
         paises.add("Inglaterra");
         paises.add("Francia");
+        paises.add("Alemania");
+        paises.add("Colombia");
+        paises.add("EEUU");
+        paises.add("Grecia");
+        paises.add("Japon");
+        paises.add("Madagascar");
+        paises.add("Mexico");
+        paises.add("Peru");
+        paises.add("Rusia");
+        paises.add("Sudafrica");
+        paises.add("Chile");
         indice_pais=0;
         indice_boxeadores=0;
         
@@ -115,6 +128,10 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         indice_boxeadores=0;
         
         stage=new Stage();
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
@@ -207,7 +224,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         atras.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador_antiguo));
             }
 
@@ -217,7 +234,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         aceptar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                click.play(100);
+                click.play(volumen);
                if(comprobarErrores()){
                    char l;
                    if(boxeadores.get(indice_boxeadores).contains("Boxeadora")){
@@ -232,7 +249,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         borrar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 final Table tabla2= new Table();
                 Label mensaje_seguridad= new Label("¿Seguro que desea borrar el boxeador y todos sus datos?. Esta accion no se podra deshacer",label);
                 mensaje_seguridad.setWrap(true);
@@ -241,7 +258,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
                 cancelar_borrar.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {  
-                        click.play(100);
+                        click.play(volumen);
                         tabla2.remove();
                     }
 
@@ -250,7 +267,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
                 aceptar_borrar.addListener(new ClickListener(){
                     @Override
                     public void clicked(InputEvent event, float x, float y) {  
-                        click.play(100);
+                        click.play(volumen);
                         tabla2.remove();
                         borrarBoxeador(nombre_boxeador_antiguo);
                     }
@@ -297,7 +314,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         izquierdaB.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                indice_pais--;
                if(indice_pais<0){
                    indice_pais=paises.size()-1;
@@ -311,7 +328,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         derechaB.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {  
-                click.play(100);
+                click.play(volumen);
                 indice_pais++;
                 if(indice_pais==paises.size()){
                    indice_pais=0;
@@ -332,7 +349,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         izquierdaBx.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                click.play(100);
+                click.play(volumen);
                indice_boxeadores--;
                if(indice_boxeadores<0){
                    indice_boxeadores=boxeadores.size()-1;
@@ -347,7 +364,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         derechaBx.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                click.play(100);
+                click.play(volumen);
                 
                 indice_boxeadores++;
                 if(indice_boxeadores==boxeadores.size()){
@@ -364,9 +381,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
     
     public void crearTabla(){
         tabla= new Table();          
-        tabla.setSize(500, 500);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-250,(Gdx.graphics.getHeight()/2)-250); 
-        
+        tabla.setFillParent(true);
         tabla.add(titulo).width(200).align(Align.center).colspan(4);
         tabla.row().spaceTop(20);
         tabla.add(texto_nombre).width(100).height(50).colspan(1).fillX();
@@ -428,7 +443,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 
@@ -523,7 +538,7 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 

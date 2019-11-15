@@ -28,12 +28,14 @@ import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
 import jose.a.desarrollador.Util.Estados_Boxeador.ESTADOS;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaEsperaBuscarOponente extends ScreenAdapter{
+    Preferencias pref;
     Principal principal;
     String nombre_boxeador;
     String competicion;
@@ -47,6 +49,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     TextureRegion saco;
     TextureRegion barra_progreso;
     Sound golpeo;
+    int volumen;
     ESTADOS estado_saco;
     boolean animacion_terminada;
     int animacion_mostrar;
@@ -62,6 +65,9 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     }
     
     public void init(){
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        
         tipo_boxeador=Constantes.DATOS_USUARIO.getBoxeador(nombre_boxeador).getTipo_boxeador();
         
         AssetManager am = new AssetManager();
@@ -211,7 +217,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
                         }else{
                             golpeo = Assets.instance.assetsSonido.golpeo_dos;
                         }
-                        golpeo.play(100);
+                        golpeo.play(volumen);
                         break;
                         
                     default:                        

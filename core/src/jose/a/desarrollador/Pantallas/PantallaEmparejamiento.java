@@ -21,6 +21,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.Label;
 import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.utils.TextureRegionDrawable;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import com.google.zxing.BarcodeFormat;
 import com.google.zxing.Writer;
 import com.google.zxing.common.BitMatrix;
@@ -31,22 +33,24 @@ import java.io.File;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 import javax.imageio.ImageIO;
 import javax.swing.ImageIcon;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaEmparejamiento extends ScreenAdapter{
-    
+    Preferencias pref;
     Principal principal;
     String competicion;
-    
+    private ExtendViewport extendViewport;
     Stage stage; 
     BitmapFont font;
     Table tabla;  
@@ -59,6 +63,8 @@ public class PantallaEmparejamiento extends ScreenAdapter{
     String cod_emparejamiento;
     String nombre_boxeador;
     Image image;
+    long empiezo;
+    
     public PantallaEmparejamiento(Principal principal,String nombre_boxeador,String competicion) {        
         this.principal=principal;
         this.nombre_boxeador=nombre_boxeador;
@@ -72,17 +78,22 @@ public class PantallaEmparejamiento extends ScreenAdapter{
         Assets.instance.init(am);
         font = Assets.instance.assetsUi.generator.generateFont(Assets.instance.assetsUi.parameter);
         stage=new Stage(); 
+        pref = new Preferencias();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);  
         
         crearLabel();
         
          try {
-            socketJugador=new Socket(Constantes.IP,Constantes.PUERTO);
+            socketJugador=new Socket(pref.getDireccion_ip(),Constantes.PUERTO);
             out=new PrintWriter(socketJugador.getOutputStream(),true);// Flujo de salida hacia el socket
             in=new BufferedReader(new InputStreamReader(socketJugador.getInputStream()));
             out.println("4&"+nombre_boxeador);
         } catch (Exception e) {
-            e.printStackTrace();
+            
+            mensajes_error.setText("Sin conexion con el servidor.");
+               empiezo = TimeUtils.millis();
         }
          
         crearTabla();
@@ -94,15 +105,18 @@ public class PantallaEmparejamiento extends ScreenAdapter{
            
            String respuesta="";
            String mensaje="";
-           boolean emparejado=false;           
-           if(in.ready()){// Compruebo si hay algo en el flujo de entrada para leer del servidor
+           boolean emparejado=false;    
+           if(in != null){
+               if(in.ready()){// Compruebo si hay algo en el flujo de entrada para leer del servidor
                 mensaje=in.readLine();  // Leo del servidor
                 respuesta=tratarMensaje(mensaje);
            }
-           if(!respuesta.isEmpty()){
-               out.println(respuesta);
-               respuesta="";
+                if(!respuesta.isEmpty()){
+                    out.println(respuesta);
+                    respuesta="";
+                }
            }
+           
            
            
            
@@ -130,12 +144,24 @@ public class PantallaEmparejamiento extends ScreenAdapter{
     
     @Override
     public void render(float delta) {
+        long momentoExacto= TimeUtils.millis();
+        long tiempoTranscurrido = (int)(TimeUnit.MILLISECONDS.toSeconds(momentoExacto) - TimeUnit.MILLISECONDS.toSeconds(empiezo));   
+        if(tiempoTranscurrido > 5){
+            principal.setScreen(new PantallaLoguin(principal));
+        }
         update();
         Gdx.gl.glClearColor(128/255f,203/255f,196/255f,0.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
         stage.draw();
     }
+
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height,true); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
       
     public void hacerImagenQR(String datos){
         try {

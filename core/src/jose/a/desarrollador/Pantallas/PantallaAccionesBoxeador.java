@@ -15,6 +15,8 @@ import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
 import com.badlogic.gdx.scenes.scene2d.Stage;
+import com.badlogic.gdx.scenes.scene2d.ui.Label;
+import com.badlogic.gdx.scenes.scene2d.ui.Label.LabelStyle;
 import com.badlogic.gdx.scenes.scene2d.ui.List;
 import com.badlogic.gdx.scenes.scene2d.ui.ScrollPane;
 import com.badlogic.gdx.scenes.scene2d.ui.SelectBox;
@@ -24,6 +26,8 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton.TextButtonStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.TimeUtils;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -31,6 +35,7 @@ import java.util.ArrayList;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
@@ -41,6 +46,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     String nombre_boxeador;
     Stage stage;    
     Table tabla;
+    Preferencias pref;
     TextButton boton_jugar;
     TextButton boton_crear_competicion;
     TextButton boton_apuntarse_competicion;
@@ -49,14 +55,14 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     TextButton boton_modificar_datos_boxeador;
     TextButton boton_cambiar_boxeador;
     TextButton.TextButtonStyle textButtonStyle;
-    
+    private ExtendViewport extendViewport;
     SelectBox.SelectBoxStyle boxStyle;
     SelectBox<String> spinner_competiciones;
-    
     BitmapFont font;
     private Skin ui;
-    
+    float tiempo_ventana;
     Sound click;
+    int volumen;
 
     public PantallaAccionesBoxeador(final Principal principal, final String nombre_boxeador) {
         this.principal = principal;
@@ -67,9 +73,10 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     }
     
     public void init(){
-        stage=new Stage();        
+        stage=new Stage(); 
+        pref = new Preferencias();
         Gdx.input.setInputProcessor(stage);  
-        
+        volumen = pref.getVolumen_sfx();
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
         
@@ -78,11 +85,13 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         TextureAtlas atlas=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
         ui=new Skin(atlas);
         click = Assets.instance.assetsSonido.click_boton;
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         crearBotones();
         crearSpinner();
         crearTabla();
         
-        stage.addActor(tabla);        
+        stage.addActor(tabla);         
     }
     
     public void crearBotones(){
@@ -102,7 +111,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
             public void clicked(InputEvent event, float x, float y) {
                 System.out.println("nombre: "+nombre_boxeador);
                // if(){}//comprobar que esta seleccionada la competicion
-               click.play(100);
+               click.play(volumen);
                 principal.setScreen(new PantallaEmparejamiento(principal,nombre_boxeador,spinner_competiciones.getSelected()));
             }
 
@@ -112,7 +121,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_crear_competicion.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {       
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaCrearCompeticiones(principal,nombre_boxeador));
             }
 
@@ -122,7 +131,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_apuntarse_competicion.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {   
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaApuntarseCompeticion(principal,nombre_boxeador));
             }
 
@@ -132,7 +141,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_consultar_campeonatos.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {  
-                click.play(100);                
+                click.play(volumen);                
                 principal.setScreen(new PantallaConsultarMisCampeonatos(principal,nombre_boxeador));
             }
 
@@ -142,7 +151,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_estadisticas.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaMostrarEstadisticasBoxeador(principal,nombre_boxeador));
             }
 
@@ -152,7 +161,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_modificar_datos_boxeador.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaModificarDatosBoxeador(principal,nombre_boxeador));
             }
 
@@ -162,7 +171,7 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         boton_cambiar_boxeador.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaSeleccionOCreacionPersonaje(principal));
             }
 
@@ -195,6 +204,11 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         spinner_competiciones.setAlignment(Align.center);
         spinner_competiciones.getList().setAlignment(Align.center);
         spinner_competiciones.setMaxListCount(5);
+        if(competiciones == null){
+            competiciones = new String[1];
+            competiciones[0] = "Sin conexion con el servidor";
+            
+        }
         spinner_competiciones.setItems(competiciones);
         spinner_competiciones.getScrollPane().sizeBy(300, 100);
     }
@@ -219,7 +233,6 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     
     @Override
     public void render(float delta) {
-        
         Gdx.gl.glClearColor(128/255f,203/255f,196/255f,0.1f);
         Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
         stage.act(delta);
@@ -228,7 +241,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
     
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
+        
     }
     
     public String[] obtenerCompeticionesApuntadas(){
@@ -238,8 +252,9 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
         String mensaje="3&"+nombre_boxeador;                
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
+            socketD.setSoTimeout(500);
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 
@@ -249,8 +264,8 @@ public class PantallaAccionesBoxeador extends ScreenAdapter{
             respuestas=recibido.split("&");
             
             
-        } catch (Exception e) {
-            e.printStackTrace();
+       } catch (Exception e) {            
+            
         }
         
         return respuestas;

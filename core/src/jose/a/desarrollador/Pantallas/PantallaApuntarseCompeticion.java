@@ -23,6 +23,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
 import com.badlogic.gdx.utils.Array;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -31,6 +32,7 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
@@ -38,11 +40,13 @@ import jose.a.desarrollador.Util.Constantes;
  */
 public class PantallaApuntarseCompeticion extends ScreenAdapter{
     Principal principal;
+    Preferencias pref;
     String competiciones;
     String nombre_boxeador;
     String nombre_competicion;
     Stage stage;    
     Table tabla;
+    private ExtendViewport extendViewport;
     BitmapFont font;
     private Skin ui;
     int offsetConsulta;
@@ -66,6 +70,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
     TextButton cancelar;
 
     Sound click;
+    int volumen;
     public PantallaApuntarseCompeticion(Principal principal, String nombre_boxeador) {
         this.principal = principal;
         this.nombre_boxeador = nombre_boxeador;
@@ -80,7 +85,11 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         TextureAtlas atlas=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
         ui=new Skin(atlas);
         
-        stage=new Stage();        
+        stage=new Stage();    
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage); 
         
         AssetManager am = new AssetManager();
@@ -148,7 +157,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if(offsetConsulta < 0){
                    offsetConsulta = 0;
                }
-               click.play(100);
+               click.play(volumen);
                pedirCompeticiones();
             }
 
@@ -162,7 +171,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if((offsetConsulta + 5)< maximoFilas){
                    offsetConsulta += 5;   
                }
-               click.play(100);
+               click.play(volumen);
                 System.out.println("Offset: "+offsetConsulta);
                pedirCompeticiones();
             }
@@ -173,7 +182,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         cancelar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {    
-                click.play(100);
+                click.play(volumen);
                principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
             }
 
@@ -186,7 +195,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
                if(nombre_competicion.equals("")){                   
                    error.setText("No tiene seleccionada ninguna competicion");
                }else{
-                   click.play(100);
+                   click.play(volumen);
                    error.setText("");
                    registrarEnCompeticion();
                }
@@ -201,7 +210,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 
@@ -227,7 +236,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
     
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
     }
     
     public void pintarTabla(){
@@ -341,7 +350,7 @@ public class PantallaApuntarseCompeticion extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 

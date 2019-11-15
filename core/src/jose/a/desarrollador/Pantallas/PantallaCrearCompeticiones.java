@@ -34,6 +34,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -44,6 +45,7 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
@@ -53,13 +55,15 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
     Principal principal;
     String nombre_boxeador;
     Stage stage;    
+    Preferencias pref;
     Table tabla;
     BitmapFont font;   
     TextureAtlas atlasUi;
     private Skin ui;
     Pixmap cursorColor;
     Sound click;
-    
+    int volumen;
+    private ExtendViewport extendViewport;
     LabelStyle label;
     LabelStyle style_error;
     Label titulo_pantalla;
@@ -87,7 +91,11 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
     }
     
     public void init(){
-        stage=new Stage();                      
+        stage=new Stage();        
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);  
         
         AssetManager am = new AssetManager();
@@ -159,7 +167,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         crear_competicion.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {  
-                click.play(100);                
+                click.play(volumen);                
                 String texto_nombre=nombre.getText().trim();
                 String texto_fecha=fecha_comienzo.getText().trim();
                 if(!texto_nombre.equals("") && !texto_fecha.equals("")){
@@ -198,7 +206,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         atras.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
             }
 
@@ -229,8 +237,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
     
     public void crearTabla(){
         tabla=new Table();                
-        tabla.setSize(400, 400);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200);         
+        tabla.setFillParent(true);       
         tabla.add(titulo_pantalla).colspan(3);
         tabla.row().spaceTop(20);
         
@@ -263,7 +270,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
 
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
     }
 
     @Override
@@ -281,7 +288,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 

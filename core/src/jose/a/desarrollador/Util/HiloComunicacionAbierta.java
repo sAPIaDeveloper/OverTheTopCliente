@@ -16,10 +16,12 @@ import java.net.Socket;
  */
 public class HiloComunicacionAbierta extends Thread{
     String usuario;
+    Preferencias pref;
   
 
     public HiloComunicacionAbierta(String usuario) {
-        this.usuario = usuario;   
+        this.usuario = usuario;  
+        pref = new Preferencias();
     }
 
     @Override
@@ -30,7 +32,7 @@ public class HiloComunicacionAbierta extends Thread{
             byte[] mesg=mensaje.getBytes();
             while(true){
          
-                InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+                InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
                 DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
                 socketD.send(packetToComunication);// Envio el paquete.
                 Thread.sleep(30000);

@@ -25,6 +25,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.Table;
 import com.badlogic.gdx.scenes.scene2d.ui.TextButton;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -32,6 +33,7 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
@@ -39,6 +41,7 @@ import jose.a.desarrollador.Util.Constantes;
  */
 public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
     Principal principal;
+    Preferencias pref;
     String nombre_boxeador;
     String tipo_boxeador;
     String peso_dato;
@@ -61,13 +64,14 @@ public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
     
     Stage stage; 
     BitmapFont font;
-    
+    private ExtendViewport extendViewport;
     TextureAtlas atlasUi;
     TextureAtlas box;
     Table tabla;  
     private Skin ui;
     private Skin boxin;
     Sound click;
+    int volumen;
     
     
     
@@ -121,6 +125,10 @@ public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
         this.nombre_boxeador = nombre_boxeador;
         
         stage=new Stage();
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
@@ -169,7 +177,7 @@ public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
         atras.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                click.play(100);
+                click.play(volumen);
                 principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
             }
 
@@ -271,8 +279,7 @@ public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
     public void crearTabla(){
         tabla= new Table();
        // tabla.setDebug(true);
-        tabla.setSize(500, 500);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-250,(Gdx.graphics.getHeight()/2)-250);
+        tabla.setFillParent(true);
         
         tabla.add(titulo).width(200).align(Align.center).colspan(2);
         tabla.row().spaceTop(20);
@@ -398,7 +405,7 @@ public class PantallaMostrarEstadisticasBoxeador extends ScreenAdapter{
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 

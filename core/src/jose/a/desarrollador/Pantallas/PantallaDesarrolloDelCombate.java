@@ -33,12 +33,14 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaDesarrolloDelCombate extends ScreenAdapter{
+    Preferencias pref;
     private Principal principal;
     private Socket socketJugador;
     private String nombre_boxeador;
@@ -79,6 +81,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
     long empiezo_finish;
     int rotacion;
     Sound sonido;
+    int volumen;
     public PantallaDesarrolloDelCombate(Principal principal, Socket socketJugador, String nombre_boxeador, String nombre_adversario, String tipo_boxeador_propio, String tipo_boxeador_adversario) {
         this.principal = principal;
         this.socketJugador = socketJugador;
@@ -98,6 +101,8 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         Assets.instance.init(am);
         combateTerminado = false;
         extendViewport = new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
         spriteBatch =new SpriteBatch();        
         publico = new Publico();        
         tatami = new Tatami();
@@ -129,7 +134,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         rotacion = 10;
         
         sonido = Assets.instance.assetsSonido.empezar_combate;
-        sonido.play(100);
+        sonido.play(volumen);
         empiezo = TimeUtils.millis();
     }
 
@@ -210,7 +215,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             empiezo = TimeUtils.millis();
             if(asalto <= 3){
                 sonido = Assets.instance.assetsSonido.empezar_asalto; 
-                sonido.play(100);
+                sonido.play(volumen);
                 round.restablecer();
             }
             
@@ -278,7 +283,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
                     sonido = Assets.instance.assetsSonido.ganar_combate;
                     accion_contrincante = "DERROTADO";
                 }
-                sonido.play(100);
+                sonido.play(volumen);
                 ganador = datos[1];
                 break;
              

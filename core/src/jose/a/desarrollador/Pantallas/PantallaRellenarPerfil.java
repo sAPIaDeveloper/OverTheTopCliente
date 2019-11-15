@@ -33,6 +33,7 @@ import com.badlogic.gdx.scenes.scene2d.ui.TextField;
 import com.badlogic.gdx.scenes.scene2d.ui.TextField.TextFieldStyle;
 import com.badlogic.gdx.scenes.scene2d.utils.ClickListener;
 import com.badlogic.gdx.utils.Align;
+import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
@@ -42,13 +43,14 @@ import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PantallaRellenarPerfil extends ScreenAdapter {
-    
+    Preferencias pref;
     Principal principal;
     Stage stage; 
     BitmapFont font;
@@ -58,7 +60,8 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
     Table tabla;  
     private Skin ui;
     Sound click;
-    
+    int volumen;
+    private ExtendViewport extendViewport;
     TextFieldStyle textFieldStyle;
     TextField nombre;
     TextField peso;
@@ -100,9 +103,24 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         paises.add("Espana");
         paises.add("Inglaterra");
         paises.add("Francia");
+        paises.add("Alemania");
+        paises.add("Colombia");
+        paises.add("EEUU");
+        paises.add("Grecia");
+        paises.add("Japon");
+        paises.add("Madagascar");
+        paises.add("Mexico");
+        paises.add("Peru");
+        paises.add("Rusia");
+        paises.add("Sudafrica");
+        paises.add("Chile");
         indice_pais=0;
         
         stage=new Stage();
+        pref = new Preferencias();
+        volumen = pref.getVolumen_sfx();
+        extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
+        stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
@@ -183,7 +201,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         aceptar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                 System.out.println("Nacionalidad: "+paises.get(indice_pais));
                 if(nombre.getText().equals("") || peso.getText().equals("")){
                     error.setText("Todos los campos deben estar relleno");
@@ -211,7 +229,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         atras.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
-                click.play(100);
+                click.play(volumen);
                principal.setScreen(new PantallaElegirPersonaje(principal));
             }
 
@@ -302,8 +320,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
     
     public void crearTabla(){
         tabla= new Table();   
-        tabla.setSize(400, 400);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200); 
+        tabla.setFillParent(true);
         
         tabla.add(titulo).colspan(4).width(400).top();
         tabla.row().spaceTop(20);
@@ -337,7 +354,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
     
     @Override
     public void resize(int width, int height) {
-        stage.getViewport().update(width, height);
+        stage.getViewport().update(width, height,true);
     }
     
     public void registrarBoxeador(String nombre,String tipo_boxeador,char sexo,double peso, String pais,String categoria){
@@ -352,7 +369,7 @@ public class PantallaRellenarPerfil extends ScreenAdapter {
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
-            InetAddress address = InetAddress.getByName(Constantes.IP);// Creo un objeto InetAddress con la ip
+            InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
             socketD.send(packetToComunication);// Envio el paquete.
             byte[] bufIn = new byte[256]; 
