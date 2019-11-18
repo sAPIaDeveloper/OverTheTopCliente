@@ -5,9 +5,10 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
       <group>
-        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Util/Constantes.java</file>
-        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Util/Assets.java</file>
-        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Entidades/PlayerCliente.java</file>
+        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Util/HiloComunicacionAbierta.java</file>
+        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Pantallas/PantallaEsperaBuscarOponente.java</file>
+        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Principal.java</file>
+        <file>file:/C:/Users/josea/Documents/AplicacionEscritorio/core/src/jose/a/desarrollador/Pantallas/PantallaLoguin.java</file>
       </group>
     </open-files>
     <editor-bookmarks lastBookmarkId="0" xmlns="http://www.netbeans.org/ns/editor-bookmarks/2"/>

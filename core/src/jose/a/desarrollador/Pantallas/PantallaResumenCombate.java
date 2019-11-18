@@ -80,6 +80,7 @@ public class PantallaResumenCombate extends ScreenAdapter{
     TextButton imagen_boxeador_p2;        
     
     public PantallaResumenCombate(Principal principal,PlayerCliente player1, PlayerCliente player2,String nombre_ganador) {
+        PantallaInicio.inicio.play();
         this.principal = principal;
         this.player1 = player1;
         this.player2 = player2;

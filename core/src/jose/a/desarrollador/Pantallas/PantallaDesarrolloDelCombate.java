@@ -8,6 +8,7 @@ package jose.a.desarrollador.Pantallas;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
+import com.badlogic.gdx.audio.Music;
 import com.badlogic.gdx.audio.Sound;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.GL20;
@@ -29,6 +30,7 @@ import jose.a.desarrollador.Entidades.Publico;
 import jose.a.desarrollador.Entidades.Round;
 import jose.a.desarrollador.Entidades.Tatami;
 import jose.a.desarrollador.Overlays.BoxeadoresHUD;
+import static jose.a.desarrollador.Pantallas.PantallaInicio.inicio;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
@@ -82,7 +84,9 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
     int rotacion;
     Sound sonido;
     int volumen;
+    Music musica_combate;
     public PantallaDesarrolloDelCombate(Principal principal, Socket socketJugador, String nombre_boxeador, String nombre_adversario, String tipo_boxeador_propio, String tipo_boxeador_adversario) {
+        PantallaInicio.inicio.stop();
         this.principal = principal;
         this.socketJugador = socketJugador;
         this.nombre_boxeador = nombre_boxeador;
@@ -136,6 +140,11 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         sonido = Assets.instance.assetsSonido.empezar_combate;
         sonido.play(volumen);
         empiezo = TimeUtils.millis();
+        
+        musica_combate = Assets.instance.assetsSonido.musica_combate;
+        musica_combate.setLooping(true);
+        musica_combate.setVolume(pref.getVolumen_musica());
+        musica_combate.play();
     }
 
     @Override
@@ -209,7 +218,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             transpareciaSangre = 1f;
         }
        
-        if(tiempoTranscurrido <= 0){                
+        if(tiempoTranscurrido <= 0 && !combateTerminado){                
             asalto++; 
             out.println("18&"+asalto);       
             empiezo = TimeUtils.millis();
@@ -228,6 +237,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
             if(tiempoTranscurrido >= 2){                
                 if(scale >= 2){
                     principal.setScreen(new PantallaResumenCombate(principal,boxeador,contrincante,ganador));
+                    musica_combate.stop();
                 }else{
                     scale += 0.6;
                     velocidad_rotacion -= 3;

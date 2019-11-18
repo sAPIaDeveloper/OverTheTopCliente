@@ -249,7 +249,7 @@ public class Constantes {
     
     public static float PIVOTEO_LOOP=0.5f;
     public static float DIRECTO_LOOP=0.3f;
-    public static float GANCHO_LOOP=0.5f;
+    public static float GANCHO_LOOP=0.4f;
     public static float BLOQUEO_LOOP=0.5f;
     public static float ESQUIVAR_LOOP=0.5f;
     public static float GOLPEADO_LOOP=0.3f;
@@ -261,6 +261,7 @@ public class Constantes {
     // Assets Sonido
     
     public static String MUSICA_INICIO="Sonido/musica_inicio.ogg";
+    public static String MUSICA_COMBATE="Sonido/musica_combate.ogg";
     
     public static String VOZ_BUZZ="Sonido/voz_buzz.wav";
     public static String VOZ_CECILIA="Sonido/voz_cecilia.wav";

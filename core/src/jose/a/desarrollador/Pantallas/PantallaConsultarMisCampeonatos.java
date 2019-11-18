@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.badlogic.gdx.scenes.scene2d.InputEvent;
@@ -27,9 +28,12 @@ import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
 import java.util.ArrayList;
+import jose.a.desarrollador.Entidades.Boxeador;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
+import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.HiloComunicacionAbierta;
 import jose.a.desarrollador.Util.Preferencias;
 
 /**
@@ -51,6 +55,7 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
     
     Stage stage;    
     Table tabla;
+    Table contenido;
     BitmapFont font;
     private Skin ui;
     
@@ -91,6 +96,8 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         crearBotones();
         crearLabel();
         crearTabla();
+        
+        stage.addActor(tabla);
         
     }
     
@@ -135,11 +142,11 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         buscar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
-                // obtener datos de la tabla
+                obtenerInformacionCompeticion();
             }
         });
         
-        aceptar =new TextButton("BUSCAR",textButtonStyle);
+        aceptar =new TextButton("ACEPTAR",textButtonStyle);
         aceptar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {
@@ -154,21 +161,26 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         label.font=font;
         label.fontColor=Color.WHITE;
         
-        mi_posicion= new Label("ESTADISTICAS DEL PERSONAJE",label);
+        mi_posicion= new Label("Mi posicion: ",label);
         mi_posicion.setAlignment(Align.center);
     }
     
     public void crearTabla(){
         tabla= new Table();
-        tabla.setDebug(true); 
-        tabla.setFillParent(true);
+        contenido = new Table();
         
-        tabla.add(spinner_competiciones).width(300).height(40);   
+        tabla.setFillParent(true);        
+        
+        tabla.add(spinner_competiciones).width(200).height(40);   
+        tabla.add().width(100).height(40);   
         tabla.add(buscar).width(120).height(50).colspan(5);
         tabla.row().spaceTop(20);
-        tabla.add().colspan(2);
+        
+        tabla.add(contenido).colspan(3);
+        tabla.row().spaceTop(20);
         tabla.add(mi_posicion);
-        tabla.add(aceptar).width(120).height(50).colspan(5);
+        tabla.add().width(100).height(40);   
+        tabla.add(aceptar).width(120).height(50);
         
     }
     
@@ -210,13 +222,68 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
             DatagramPacket paqueteEntrada = new DatagramPacket(bufIn, bufIn.length); 
             socketD.receive(paqueteEntrada);// Espero para recibir respuesta
             String recibido = new String(paqueteEntrada.getData(), 0, paqueteEntrada.getLength());
-            informacion=recibido.split("&");
             
+            tratarMensaje(recibido);
             
         } catch (Exception e) {
             e.printStackTrace();
         }
         
         return informacion;
+    }
+    
+    @Override
+    public void render(float delta) {
+        Gdx.gl.glClearColor(128/255f,203/255f,196/255f,0.1f);
+        Gdx.gl.glClear(GL20.GL_COLOR_BUFFER_BIT);
+        stage.act(delta);
+        stage.draw();
+    }
+    
+    @Override
+    public void resize(int width, int height) {
+        stage.getViewport().update(width, height,true);
+        
+    }
+    
+    @Override
+    public void dispose() {
+        Assets.instance.dispose();
+
+
+    }
+    
+    public void tratarMensaje(String mensaje){
+               
+        String codigos[]=mensaje.split("&");
+        int cod=Integer.parseInt(codigos[0]);
+        switch(Codigos_Escritorio.codigo_escritorio(cod)){
+            case ERROR:
+                
+                break;
+                
+            case DATOS_DE_COMPETICION_SELECCIONADA:
+                String datos_competicion[];
+                contenido.clearChildren();
+                contenido.add(new Label("NOMBRE",label)).pad(5);
+                contenido.add(new Label("VICTORIAS",label)).pad(5);
+                contenido.add(new Label("PUNTOS TOTALES",label)).pad(5);
+                
+                for (int i = 1; i < codigos.length; i++) {
+                    contenido.row().space(10);
+                    datos_competicion = codigos[i].split("@");
+                    if(datos_competicion[0].equals(nombre_boxeador)){
+                        mi_posicion.setText("Mi posicion: "+i);
+                    }
+                    if(i < 7){
+                        contenido.add(new Label(datos_competicion[0],label)).pad(5);
+                        contenido.add(new Label(datos_competicion[1],label)).pad(5);
+                        contenido.add(new Label(datos_competicion[2],label)).pad(5);
+                    }
+                }
+                break;
+                
+            
+        }
     }
 }

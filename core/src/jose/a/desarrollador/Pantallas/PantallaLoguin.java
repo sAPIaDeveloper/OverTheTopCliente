@@ -43,6 +43,7 @@ import jose.a.desarrollador.Util.Codigos_Escritorio;
 import jose.a.desarrollador.Util.Constantes;
 import jose.a.desarrollador.Util.HiloComunicacionAbierta;
 import jose.a.desarrollador.Util.Preferencias;
+import org.apache.commons.codec.digest.DigestUtils;
 
 /**
  * Posibles colores de fondo:
@@ -144,8 +145,8 @@ public class PantallaLoguin extends ScreenAdapter {
         textButtonStyle.pressedOffsetX=1;
         textButtonStyle.pressedOffsetY=-1;
         
-        boton_login = new TextButton("LOGIN", textButtonStyle);
-        boton_registro = new TextButton("REGISTRO", textButtonStyle);
+        boton_login = new TextButton("Iniciar Sesion", textButtonStyle);
+        boton_registro = new TextButton("Registro", textButtonStyle);
         
         //Eventos de click en los botones
         
@@ -154,12 +155,13 @@ public class PantallaLoguin extends ScreenAdapter {
             public void clicked(InputEvent event, float x, float y) { 
                 click.play(volumen);
                 String texto_email=email.getText();
-                 String texto_contrasena=contrasena.getText();    
+                 String texto_contrasena=contrasena.getText();  
+                 String ContraseñaCodificada =  DigestUtils.sha256Hex(texto_contrasena);                 
                  if(texto_email.equals("") | texto_contrasena.equals("")){
                     error.setText("No puedes dejar campos vacios");
                 }else{
                     if(formatoCorrectoCorreo(texto_email)){
-                         enviarDatos(texto_email,texto_contrasena,0);
+                         enviarDatos(texto_email,ContraseñaCodificada,0);
                     }else{
                         error.setText("El formato del correo electronico es invalido");
                     }
@@ -177,11 +179,13 @@ public class PantallaLoguin extends ScreenAdapter {
                 click.play(volumen);
                 String texto_email=email.getText().trim();
                 String texto_contrasena=contrasena.getText().trim();
+                String ContraseñaCodificada =  DigestUtils.sha256Hex(texto_contrasena);
+                
                 if(texto_email.equals("") | texto_contrasena.equals("")){
                     error.setText("No puedes dejar campos vacios");
                 }else{
                     if(formatoCorrectoCorreo(texto_email)){
-                         enviarDatos(texto_email,texto_contrasena,1);
+                         enviarDatos(texto_email,ContraseñaCodificada,1);
                     }else{
                         error.setText("El formato del correo electronico es inválido");
                     }
@@ -196,10 +200,11 @@ public class PantallaLoguin extends ScreenAdapter {
         textButtonStyleOpciones.up= ui.getDrawable(Constantes.OPCIONES);                
         textButtonStyleOpciones.font = font;
         
-        boton_opciones = new TextButton("",textButtonStyleOpciones);
+        boton_opciones = new TextButton("Opciones",textButtonStyle);
         boton_opciones.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) { 
+                click.play(volumen);
                 principal.setScreen(new PantallaOpciones(principal));
                 
             }
@@ -232,23 +237,28 @@ public class PantallaLoguin extends ScreenAdapter {
         tabla.setFillParent(true);
         /*tabla.setSize(400, 400);           
         tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200); */
-        tabla.add(boton_opciones).align(Align.right).width(30).height(30).colspan(2);
-        tabla.row().spaceTop(50);
+        
+        
         tabla.add(texto_email).width(50);
         tabla.add(email).width(200).height(50);
-        tabla.row();
+        tabla.row().spaceTop(20);
         tabla.add(texto_contrasena);
         tabla.add(contrasena).width(200).height(50);
         tabla.row();
                      
         
         
-        tabla.add(error).colspan(2).height(50);
+        tabla.add(error).colspan(2).height(25);
         tabla.row();  
-        tabla.add(boton_login).width(120).height(60).space(20).align(Align.left);
+        tabla.add(boton_login).width(200).height(60).space(20).align(Align.center).colspan(2);
+        tabla.row();  
         
+        tabla.add(boton_registro).width(200).height(60).space(20).align(Align.center).colspan(2);
+        tabla.row();  
         
-        tabla.add(boton_registro).width(120).height(60).space(20).align(Align.right);
+        tabla.add(boton_opciones).width(200).height(60).space(20).align(Align.center).colspan(2);
+        tabla.row();  
+        
     }
     
     @Override
@@ -286,7 +296,7 @@ public class PantallaLoguin extends ScreenAdapter {
         System.out.println("enviando datos...");
         try {
             DatagramSocket socketD = new DatagramSocket();// Creo un socket tipo datagrama
-            socketD.setSoTimeout(4000);
+            socketD.setSoTimeout(2000);
             byte[] mesg=mensaje.getBytes();// Paso el mensaje a un array de bytes
             InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
             DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
@@ -295,8 +305,7 @@ public class PantallaLoguin extends ScreenAdapter {
             byte[] bufIn = new byte[256]; 
             DatagramPacket paqueteEntrada = new DatagramPacket(bufIn, bufIn.length); 
            
-            socketD.receive(paqueteEntrada);// Espero para recibir respuesta
-            System.out.println("despues");
+            socketD.receive(paqueteEntrada);// Espero para recibir respuesta            
             String recibido = new String(paqueteEntrada.getData(), 0, paqueteEntrada.getLength());
 
             mostrarMensaje(recibido);
@@ -318,14 +327,14 @@ public class PantallaLoguin extends ScreenAdapter {
                 break;
                 
             case REGISTRO_USUARIO_COMPLETADO:
-                new HiloComunicacionAbierta(codigos[1]).start();
+                new HiloComunicacionAbierta(codigos[1],principal).start();
                 System.out.println("Registrado con exito");
                 principal.setScreen(new PantallaSeleccionOCreacionPersonaje(principal));
                 break;
                 
             case INICIAR_SESION_ACEPTADO:
                 System.out.println("Logueado con exito"); 
-                new HiloComunicacionAbierta(codigos[1]).start();
+                new HiloComunicacionAbierta(codigos[1],principal).start();
                 if(codigos.length>2){                    
                     for (int i = 2; i < codigos.length; i++) {
                         String [] datos_boxeador=codigos[i].split("@");

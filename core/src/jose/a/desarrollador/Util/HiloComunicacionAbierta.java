@@ -8,7 +8,8 @@ package jose.a.desarrollador.Util;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import java.net.Socket;
+import jose.a.desarrollador.Pantallas.PantallaLoguin;
+import jose.a.desarrollador.Principal;
 
 /**
  *
@@ -17,11 +18,12 @@ import java.net.Socket;
 public class HiloComunicacionAbierta extends Thread{
     String usuario;
     Preferencias pref;
-  
+    Principal principal;
 
-    public HiloComunicacionAbierta(String usuario) {
+    public HiloComunicacionAbierta(String usuario,Principal principal) {
         this.usuario = usuario;  
         pref = new Preferencias();
+        this.principal = principal;
     }
 
     @Override
@@ -34,11 +36,17 @@ public class HiloComunicacionAbierta extends Thread{
          
                 InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
                 DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
+                socketD.setSoTimeout(1000);
                 socketD.send(packetToComunication);// Envio el paquete.
+                byte[] bufIn = new byte[256]; 
+                DatagramPacket paqueteEntrada = new DatagramPacket(bufIn, bufIn.length);            
+                socketD.receive(paqueteEntrada);
+                
                 Thread.sleep(30000);
             }
         } catch (Exception e) {
-            e.printStackTrace();
+            //avisar que no hay conexion
+            
         }
         
     }

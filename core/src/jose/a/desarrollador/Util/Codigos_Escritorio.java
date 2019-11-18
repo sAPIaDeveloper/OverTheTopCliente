@@ -28,7 +28,9 @@ public class Codigos_Escritorio {
         ACTUALIZAR_ACCIONES,
         ESTADISTICAS_BOXEADOR,
         COMPETICIONES_PARA_APUNTARSE,
-        BOXEADOR_APUNTADO_EXITO
+        BOXEADOR_APUNTADO_EXITO,
+        MENSAJE_DE_SEGUIR_ACTIVO_RECIBIDO,
+        DATOS_DE_COMPETICION_SELECCIONADA
     }
     
     public static Codigo codigo_escritorio(int num){

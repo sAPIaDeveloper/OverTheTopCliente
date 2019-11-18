@@ -99,18 +99,36 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
         tatami.render(spriteBatch,extendViewport);
         
         spriteBatch.draw(logo.getTexture(),
-                (extendViewport.getWorldWidth()/2)-((logo.getRegionWidth())),
-                (extendViewport.getWorldHeight()/2)-((logo.getRegionHeight()/1.1f)),
+                (extendViewport.getWorldWidth()/2)- ((logo.getRegionWidth()*2)/2),
+                (extendViewport.getWorldHeight()/2)-((logo.getRegionHeight()*2)/3),
                 0,
                 0,
-                extendViewport.getWorldWidth(),
-                extendViewport.getWorldHeight(),
+                logo.getRegionWidth()*2,
+                logo.getRegionHeight()*2,
                 1, 1,0,
                 logo.getRegionX(),
                 logo.getRegionY(),
                 logo.getRegionWidth(),
                 logo.getRegionHeight(),
-                false,false);       
+                false,false);    
+        
+       /* spriteBatch.draw(
+                    saco.getTexture(),
+                    (extendViewport.getWorldWidth()/2)-((saco.getRegionWidth()*4)/2),
+                    (extendViewport.getWorldHeight()/2)-((saco.getRegionHeight()*4)/3),
+                    0,
+                    0,
+                    saco.getRegionWidth()*4,
+                    saco.getRegionHeight()*4,
+                    1,
+                    1,
+                    0,
+                    saco.getRegionX(),
+                    saco.getRegionY(),
+                    saco.getRegionWidth(),
+                    saco.getRegionHeight(),
+                    false,
+                    false);*/
        
         font.draw(spriteBatch, "Pulse cualquier boton para continuar", (extendViewport.getWorldWidth()/2) - (widthTexto/2), extendViewport.getWorldHeight()/5);
       

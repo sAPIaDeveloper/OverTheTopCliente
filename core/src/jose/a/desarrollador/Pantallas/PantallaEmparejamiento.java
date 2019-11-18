@@ -53,8 +53,7 @@ public class PantallaEmparejamiento extends ScreenAdapter{
     private ExtendViewport extendViewport;
     Stage stage; 
     BitmapFont font;
-    Table tabla;  
-    Image codigoQR;
+    Table tabla;      
     Label.LabelStyle label;
     Label mensajes_error;
     Socket socketJugador;
@@ -64,6 +63,7 @@ public class PantallaEmparejamiento extends ScreenAdapter{
     String nombre_boxeador;
     Image image;
     long empiezo;
+    boolean sin_conexion;
     
     public PantallaEmparejamiento(Principal principal,String nombre_boxeador,String competicion) {        
         this.principal=principal;
@@ -82,7 +82,7 @@ public class PantallaEmparejamiento extends ScreenAdapter{
         extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
         stage.setViewport(extendViewport);
         Gdx.input.setInputProcessor(stage);  
-        
+        sin_conexion = false;
         crearLabel();
         
          try {
@@ -94,6 +94,7 @@ public class PantallaEmparejamiento extends ScreenAdapter{
             
             mensajes_error.setText("Sin conexion con el servidor.");
                empiezo = TimeUtils.millis();
+               sin_conexion = true;
         }
          
         crearTabla();
@@ -147,7 +148,10 @@ public class PantallaEmparejamiento extends ScreenAdapter{
         long momentoExacto= TimeUtils.millis();
         long tiempoTranscurrido = (int)(TimeUnit.MILLISECONDS.toSeconds(momentoExacto) - TimeUnit.MILLISECONDS.toSeconds(empiezo));   
         if(tiempoTranscurrido > 5){
-            principal.setScreen(new PantallaLoguin(principal));
+            if(sin_conexion){
+                principal.setScreen(new PantallaLoguin(principal));
+            }
+            
         }
         update();
         Gdx.gl.glClearColor(128/255f,203/255f,196/255f,0.1f);

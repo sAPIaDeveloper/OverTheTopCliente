@@ -19,13 +19,14 @@ import com.badlogic.gdx.utils.viewport.ExtendViewport;
 import java.util.Stack;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Estados_Boxeador.ESTADOS;
+import jose.a.desarrollador.Util.Preferencias;
 
 /**
  *
  * @author josea
  */
 public class PlayerCliente {
-    
+    Preferencias pref;
     String rol_boxeador;// para saber si pintar al jugador o al contrincante 
     Stack lista_acciones;
     //Elementos necesarios para pintar el boxeador
@@ -57,7 +58,7 @@ public class PlayerCliente {
     public void init(){
         AssetManager am = new AssetManager();
         Assets.instance.init(am);
-        
+        pref = new Preferencias();
         position_boxeador= new Vector2(0,0);
         estados_boxeador= ESTADOS.PIVOTANDO;
         estados_boxeador_anterior= ESTADOS.PIVOTANDO;
@@ -121,14 +122,11 @@ public class PlayerCliente {
                 estados_boxeador=ESTADOS.GOLPEADO;
                 break;
             case "DERROTADO":
-                estados_boxeador=ESTADOS.DERROTADO;
+                estados_boxeador=ESTADOS.DERROTADO;                
                 break;
-            default:
-                //estados_boxeador=ESTADOS.PIVOTANDO;
+            default:                
                 break;
-        }
-        
-        if(estados_boxeador_anterior != ESTADOS.PIVOTANDO && ESTADOS.PIVOTANDO != estados_boxeador && rol_boxeador.equals("BOXEADOR")){System.out.println(estados_boxeador+" ---> "+estados_boxeador_anterior);}
+        }                
         
         if(estados_boxeador_anterior != estados_boxeador){
             
@@ -403,7 +401,7 @@ public class PlayerCliente {
                 }
                 break;
                 
-            case GANCHO_IZQUIERDA:
+            case GANCHO_DERECHA:
                 switch(tipo_boxeador){
                     case "Boxeador_john":
                         if(rol_boxeador.equals("CONTRINCANTE")){
@@ -460,7 +458,7 @@ public class PlayerCliente {
                 }
                 break;
                 
-            case GANCHO_DERECHA:
+            case GANCHO_IZQUIERDA:
                 switch(tipo_boxeador){
                     case "Boxeador_john":
                         if(rol_boxeador.equals("CONTRINCANTE")){
@@ -789,6 +787,6 @@ public class PlayerCliente {
     
     
     public void reproducirSonido(){
-        golpeo.play(100);
+        golpeo.play(pref.getVolumen_sfx());
     }
 }
