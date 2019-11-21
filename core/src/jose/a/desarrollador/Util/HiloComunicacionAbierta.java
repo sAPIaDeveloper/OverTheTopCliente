@@ -5,10 +5,11 @@
  */
 package jose.a.desarrollador.Util;
 
+import com.badlogic.gdx.Gdx;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
-import jose.a.desarrollador.Pantallas.PantallaLoguin;
+import jose.a.desarrollador.Pantallas.PantallaSinConexion;
 import jose.a.desarrollador.Principal;
 
 /**
@@ -35,17 +36,22 @@ public class HiloComunicacionAbierta extends Thread{
             while(true){
          
                 InetAddress address = InetAddress.getByName(pref.getDireccion_ip());// Creo un objeto InetAddress con la ip
-                DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, Constantes.PUERTO); // Creo el paquete con la información
+                DatagramPacket packetToComunication = new DatagramPacket(mesg, mesg.length, address, 5555); // Creo el paquete con la información
                 socketD.setSoTimeout(1000);
                 socketD.send(packetToComunication);// Envio el paquete.
                 byte[] bufIn = new byte[256]; 
                 DatagramPacket paqueteEntrada = new DatagramPacket(bufIn, bufIn.length);            
                 socketD.receive(paqueteEntrada);
                 
-                Thread.sleep(30000);
+                Thread.sleep(10000);
             }
         } catch (Exception e) {
-            //avisar que no hay conexion
+            Gdx.app.postRunnable(new Runnable() {
+                @Override
+                public void run() {
+                   principal.setScreen(new PantallaSinConexion(principal));
+                }
+             });
             
         }
         

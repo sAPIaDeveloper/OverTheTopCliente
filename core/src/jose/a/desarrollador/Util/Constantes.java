@@ -113,6 +113,9 @@ public class Constantes {
     public static String PROGRESS_BAR_11="progress_once";
     public static String PROGRESS_BAR_12="progress_doce";
     
+    
+    public static String SIN_CONEXION="sin_conexion";
+    
     //ELEMENTOS HUD
     
     public static String CORAZON="corazon";

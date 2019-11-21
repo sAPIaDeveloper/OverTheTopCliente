@@ -6,6 +6,7 @@
 package jose.a.desarrollador.Pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
 import com.badlogic.gdx.audio.Music;
@@ -54,14 +55,17 @@ public class PantallaOpciones extends ScreenAdapter{
     Label titulo;
     Label sfx;
     Label musica;
+    Label pantalla_completa;
     Label direccion_ip_servidor;
     
     TextButton activar_desactivar_sfx;
     TextButton activar_desactivar_musica;    
+    TextButton activar_desactivar_pantallaCompleta;    
     TextButton boton_aceptar;
     TextButton.TextButtonStyle textButtonStyle;
     TextButton.TextButtonStyle textButtonStyleCheckboxSfx;
     TextButton.TextButtonStyle textButtonStyleCheckboxMusic;
+    TextButton.TextButtonStyle textButtonStyleCheckboxPantallaCompleta;
     
     TextField.TextFieldStyle textFieldStyle;
     TextField direccion_ip;
@@ -106,6 +110,7 @@ public class PantallaOpciones extends ScreenAdapter{
         sfx = new Label("SFX",label);
         musica = new Label("MUSICA",label);
         direccion_ip_servidor = new Label("DIRECCION IP DEL SERVIDOR",label);
+        pantalla_completa = new Label("PANTALLA COMPLETA",label);
            
         f=new Label.LabelStyle();
         f.font=font;
@@ -193,6 +198,36 @@ public class PantallaOpciones extends ScreenAdapter{
             }
             
         });
+        
+        textButtonStyleCheckboxPantallaCompleta = new TextButton.TextButtonStyle();
+        if(pref.isPantalla_completa()){
+            textButtonStyleCheckboxPantallaCompleta.up= ui.getDrawable(Constantes.CHECKBOX_ACTIVADO);
+        }else{
+            textButtonStyleCheckboxPantallaCompleta.up= ui.getDrawable(Constantes.CHECKBOX_DESACTIVADO);
+        }               
+        textButtonStyleCheckboxPantallaCompleta.font = font;
+        
+        textButtonStyleCheckboxPantallaCompleta.pressedOffsetX=1;
+        textButtonStyleCheckboxPantallaCompleta.pressedOffsetY=-1;
+        
+        activar_desactivar_pantallaCompleta = new TextButton("",textButtonStyleCheckboxPantallaCompleta);
+        activar_desactivar_pantallaCompleta.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {                 
+              if(pref.isPantalla_completa()) {
+                pref.setPantalla_completa(false);
+                Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+                textButtonStyleCheckboxPantallaCompleta.up = ui.getDrawable(Constantes.CHECKBOX_DESACTIVADO);
+              }else{
+                  pref.setPantalla_completa(true);
+                  Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+                  textButtonStyleCheckboxPantallaCompleta.up = ui.getDrawable(Constantes.CHECKBOX_ACTIVADO);
+              }
+              
+            
+            }
+            
+        });
     }
     
     public void crearTextField(){
@@ -215,6 +250,10 @@ public class PantallaOpciones extends ScreenAdapter{
         tabla.row().spaceTop(20);
         tabla.add(musica);
         tabla.add(activar_desactivar_musica).width(50).height(50);
+        
+        tabla.row().spaceTop(20);
+        tabla.add(pantalla_completa);
+        tabla.add(activar_desactivar_pantallaCompleta).width(50).height(50);
         
         tabla.row().spaceTop(20);
         tabla.add(direccion_ip_servidor).colspan(2);

@@ -6,6 +6,7 @@
 package jose.a.desarrollador.Pantallas;
 
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.Graphics.DisplayMode;
 import com.badlogic.gdx.InputProcessor;
 import com.badlogic.gdx.ScreenAdapter;
 import com.badlogic.gdx.assets.AssetManager;
@@ -43,14 +44,16 @@ public class PantallaInicio extends ScreenAdapter implements  InputProcessor{
     public static Music inicio;
     int volumen;
     public PantallaInicio(Principal principal) {
-        this.principal = principal;
-        
+        this.principal = principal;        
         init();                      
     }
 
     public void init(){
         pref = new Preferencias();
         volumen = pref.getVolumen_musica();
+        if(pref.isPantalla_completa()) {            
+             Gdx.graphics.setFullscreenMode(Gdx.graphics.getDisplayMode());
+        }
         Gdx.input.setInputProcessor(this);
         
         AssetManager am = new AssetManager();

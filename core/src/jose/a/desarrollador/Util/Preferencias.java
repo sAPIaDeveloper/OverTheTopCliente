@@ -17,12 +17,15 @@ public class Preferencias {
     private int volumen_sfx;
     private int volumen_musica;
     private String direccion_ip;
+    private boolean pantalla_completa;
 
     public Preferencias() {
         preferencias = (Preferences) Gdx.app.getPreferences("datosPrueba");
         
         volumen_sfx = preferencias.getInteger("sfx",100);
         volumen_musica = preferencias.getInteger("musica",100);
+        
+        pantalla_completa = preferencias.getBoolean("pantalla", false);
         
         direccion_ip = preferencias.getString("direccion_ip", "");
     
@@ -43,6 +46,19 @@ public class Preferencias {
         preferencias.flush();
        
     }
+
+    public boolean isPantalla_completa() {
+        pantalla_completa = preferencias.getBoolean("pantalla",false);
+        System.out.println("Pantalla "+pantalla_completa);
+        return pantalla_completa;
+    }
+
+    public void setPantalla_completa(boolean pantalla_completa) {
+        preferencias.putBoolean("pantalla", pantalla_completa);
+        preferencias.flush();
+    }
+    
+    
 
     public int getVolumen_musica() {       
         volumen_musica = preferencias.getInteger("musica",100);       

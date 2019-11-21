@@ -66,6 +66,13 @@ stamina_barra
   orig: 350, 100
   offset: 0, 0
   index: -1
+sin_conexion
+  rotate: false
+  xy: 817, 871
+  size: 150, 150
+  orig: 150, 150
+  offset: 0, 0
+  index: -1
 vida_barra
   rotate: false
   xy: 358, 532
@@ -75,21 +82,14 @@ vida_barra
   index: -1
 corazon
   rotate: false
-  xy: 817, 921
+  xy: 710, 532
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
 flecha_dcha
   rotate: false
-  xy: 710, 532
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-flecha_dcha_seleccionada
-  rotate: false
-  xy: 919, 921
+  xy: 829, 769
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
@@ -101,238 +101,238 @@ Alemania
   orig: 100, 70
   offset: 0, 0
   index: -1
-botonPantallaPrincipal
-  rotate: false
-  xy: 817, 859
-  size: 100, 60
-  orig: 100, 60
-  offset: 0, 0
-  index: -1
-flecha_izq
-  rotate: false
-  xy: 829, 757
-  size: 100, 100
-  orig: 100, 100
-  offset: 0, 0
-  index: -1
-botonPantallaPrincipal_pulsado
-  rotate: false
-  xy: 919, 859
-  size: 100, 60
-  orig: 100, 60
-  offset: 0, 0
-  index: -1
-flecha_izq_seleccionada
+flecha_dcha_seleccionada
   rotate: false
   xy: 812, 532
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
-rayo
+flecha_izq
   rotate: false
   xy: 303, 430
   size: 100, 100
   orig: 100, 100
   offset: 0, 0
   index: -1
+flecha_izq_seleccionada
+  rotate: false
+  xy: 303, 328
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
+rayo
+  rotate: false
+  xy: 405, 430
+  size: 100, 100
+  orig: 100, 100
+  offset: 0, 0
+  index: -1
 Chile
   rotate: false
-  xy: 303, 358
+  xy: 303, 256
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Colombia
   rotate: false
-  xy: 405, 460
+  xy: 405, 358
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 EEUU
   rotate: false
-  xy: 303, 286
+  xy: 507, 460
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Espana
   rotate: false
-  xy: 405, 388
+  xy: 405, 286
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Francia
   rotate: false
-  xy: 507, 460
+  xy: 507, 388
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Grecia
   rotate: false
-  xy: 405, 316
+  xy: 609, 460
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Inglaterra
   rotate: false
-  xy: 507, 388
+  xy: 507, 316
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Japon
   rotate: false
-  xy: 609, 460
+  xy: 609, 388
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Madagascar
   rotate: false
-  xy: 507, 316
+  xy: 711, 460
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Mexico
   rotate: false
-  xy: 609, 388
+  xy: 609, 316
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Peru
   rotate: false
-  xy: 711, 460
+  xy: 711, 388
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Rusia
   rotate: false
-  xy: 609, 316
+  xy: 711, 316
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
 Sudafrica
   rotate: false
-  xy: 711, 388
+  xy: 813, 460
   size: 100, 70
   orig: 100, 70
   offset: 0, 0
   index: -1
+botonPantallaPrincipal
+  rotate: false
+  xy: 813, 398
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
+botonPantallaPrincipal_pulsado
+  rotate: false
+  xy: 813, 336
+  size: 100, 60
+  orig: 100, 60
+  offset: 0, 0
+  index: -1
 progress_cero
   rotate: false
-  xy: 711, 346
+  xy: 405, 244
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_cinco
   rotate: false
-  xy: 813, 490
+  xy: 507, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_cuatro
   rotate: false
-  xy: 813, 448
+  xy: 609, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_diez
   rotate: false
-  xy: 813, 406
+  xy: 711, 274
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_doce
   rotate: false
-  xy: 813, 364
+  xy: 813, 294
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_dos
   rotate: false
-  xy: 405, 274
+  xy: 507, 232
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_nueve
   rotate: false
-  xy: 507, 274
+  xy: 609, 232
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_ocho
   rotate: false
-  xy: 609, 274
+  xy: 711, 232
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_once
   rotate: false
-  xy: 711, 304
+  xy: 813, 252
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 progress_seis
   rotate: false
-  xy: 813, 322
-  size: 100, 40
-  orig: 100, 40
-  offset: 0, 0
-  index: -1
-progress_siete
-  rotate: false
-  xy: 711, 262
-  size: 100, 40
-  orig: 100, 40
-  offset: 0, 0
-  index: -1
-progress_tres
-  rotate: false
-  xy: 813, 280
-  size: 100, 40
-  orig: 100, 40
-  offset: 0, 0
-  index: -1
-progress_uno
-  rotate: false
-  xy: 813, 238
+  xy: 813, 210
   size: 100, 40
   orig: 100, 40
   offset: 0, 0
   index: -1
 saco_cero
   rotate: false
-  xy: 931, 782
+  xy: 969, 946
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
 saco_cuatro
   rotate: false
-  xy: 968, 782
+  xy: 931, 794
   size: 35, 75
   orig: 35, 75
   offset: 0, 0
   index: -1
 saco_dos
+  rotate: false
+  xy: 969, 869
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_tres
+  rotate: false
+  xy: 968, 792
+  size: 35, 75
+  orig: 35, 75
+  offset: 0, 0
+  index: -1
+saco_uno
   rotate: false
   xy: 460, 656
   size: 35, 75
@@ -346,30 +346,37 @@ ckeckbox_activado
   orig: 50, 50
   offset: 0, 0
   index: -1
-saco_tres
-  rotate: false
-  xy: 867, 680
-  size: 35, 75
-  orig: 35, 75
-  offset: 0, 0
-  index: -1
-saco_uno
-  rotate: false
-  xy: 904, 680
-  size: 35, 75
-  orig: 35, 75
-  offset: 0, 0
-  index: -1
 ckeckbox_desactivado
   rotate: false
-  xy: 941, 730
+  xy: 330, 204
   size: 50, 50
   orig: 50, 50
   offset: 0, 0
   index: -1
+progress_siete
+  rotate: false
+  xy: 382, 202
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_tres
+  rotate: false
+  xy: 484, 190
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
+progress_uno
+  rotate: false
+  xy: 586, 190
+  size: 100, 40
+  orig: 100, 40
+  offset: 0, 0
+  index: -1
 opciones
   rotate: false
-  xy: 941, 678
+  xy: 330, 152
   size: 50, 50
   orig: 50, 50
   offset: 0, 0

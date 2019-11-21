@@ -129,7 +129,7 @@ public class PantallaDesarrolloDelCombate extends ScreenAdapter{
         finish= (TextureRegion) Assets.instance.screen.finish;
         sangre= (TextureRegion) Assets.instance.screen.sangre;
         System.out.println(posicion_finish+""+finish);
-        posicion_finish.x = (extendViewport.getWorldWidth() / 2 + finish.getRegionWidth() / 2);
+        posicion_finish.x = (extendViewport.getWorldWidth() / 2 + finish.getRegionWidth()/3);
         posicion_finish.y = (extendViewport.getWorldHeight() + finish.getRegionHeight()*2);
         transpareciaSangre = 0;
         asalto = 1;

@@ -137,7 +137,7 @@ public class Assets implements Disposable,AssetErrorListener {
         public final TextureRegion corazon;
         public final TextureRegion rayo;
         public final TextureRegion barra_vida;
-        public final TextureRegion barra_stamina;
+        public final TextureRegion barra_stamina;       
         public final FreeTypeFontGenerator generator ;
         public final FreeTypeFontGenerator.FreeTypeFontParameter parameter;
         
@@ -147,7 +147,7 @@ public class Assets implements Disposable,AssetErrorListener {
             corazon = atlas.findRegion(Constantes.CORAZON);
             rayo = atlas.findRegion(Constantes.RAYO);
             barra_vida = atlas.findRegion(Constantes.BARRA_VIDA);
-            barra_stamina = atlas.findRegion(Constantes.BARRA_STAMINA);
+            barra_stamina = atlas.findRegion(Constantes.BARRA_STAMINA);            
             
             Array<AtlasRegion> golpeo_normal = new Array<AtlasRegion>();
             golpeo_normal.add(atlas.findRegion(Constantes.SACO_00));
