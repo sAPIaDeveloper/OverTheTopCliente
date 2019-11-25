@@ -54,6 +54,10 @@ public class Usuario {
         lista_boxeadores.remove(nombre_boxeador);
     }
     
+    public void clearBoxeadores(){
+        lista_boxeadores.clear();
+    }
+    
     public boolean existeBoxeador(String nombre_boxeador){
         return lista_boxeadores.containsKey(nombre_boxeador);
     }

@@ -23,6 +23,7 @@ import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.util.concurrent.TimeUnit;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Codigos_Escritorio;
@@ -55,6 +56,11 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     int animacion_mostrar;
     BitmapFont font;
     float widthTexto;
+    float widthTextoNumero;
+    float heightTexto;
+    int tiempoMax;
+    long empiezo;
+    long tiempoTranscurrido;
     public PantallaEsperaBuscarOponente(Principal principal, Socket socketJugador,String nombre_boxeador,String competicion) {
         this.principal = principal;
         this.socketJugador = socketJugador;
@@ -65,6 +71,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     }
     
     public void init(){
+        tiempoTranscurrido = 0;
         pref = new Preferencias();
         volumen = pref.getVolumen_sfx();
         
@@ -91,6 +98,9 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
         GlyphLayout layout = new GlyphLayout();     
         layout.setText(font,"Buscando oponente..");
         widthTexto = layout.width;
+        heightTexto = layout.height;
+        layout.setText(font,"00");
+        widthTextoNumero = layout.width;
         
         try {
                     
@@ -101,6 +111,8 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
         } catch (Exception e) {
             e.printStackTrace();
         }
+        tiempoMax = 30;
+        empiezo = TimeUtils.millis();
     }
     
     @Override
@@ -111,7 +123,10 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
     
     @Override
     public void render(float delta) {
+         long momentoExacto= TimeUtils.millis();
+        tiempoTranscurrido = (int)tiempoMax - (TimeUnit.MILLISECONDS.toSeconds(momentoExacto) - TimeUnit.MILLISECONDS.toSeconds(empiezo));
         update();
+       
         
         float walkTimeSeconds = MathUtils.nanoToSec * (TimeUtils.nanoTime() - walkStartTime);
         
@@ -122,7 +137,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
 
         spriteBatch.setProjectionMatrix(extendViewport.getCamera().combined);
         spriteBatch.begin();
-        barra_progreso= (TextureRegion) Assets.instance.assetsUi.progress_bar.getKeyFrame(walkTimeSeconds);            ;
+        barra_progreso= (TextureRegion) Assets.instance.assetsUi.progress_bar.getKeyFrame(walkTimeSeconds);
         switch(estado_saco){
             case PIVOTANDO:
                 
@@ -159,7 +174,7 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
                     saco.getRegionHeight(),
                     false,
                     false);
-        
+        font.draw(spriteBatch, tiempoTranscurrido+"", (extendViewport.getWorldWidth()/2) - (widthTextoNumero/2), extendViewport.getWorldHeight()/4 + heightTexto);
         font.draw(spriteBatch, "Buscando oponente..", (extendViewport.getWorldWidth()/2) - (widthTexto/2), extendViewport.getWorldHeight()/4);
         
         spriteBatch.draw(
@@ -184,7 +199,17 @@ public class PantallaEsperaBuscarOponente extends ScreenAdapter{
         spriteBatch.end();
     }
     
-   public void update(){
+   public void update(){      
+       if(tiempoTranscurrido <= 0){  
+           
+           tiempoTranscurrido = 0;
+            try {
+               out.println("21&"+competicion);
+           } catch (Exception e1) {
+               e1.printStackTrace();
+           }
+            principal.setScreen(new PantallaAccionesBoxeador(principal,nombre_boxeador));
+        }
        String mensaje="";
        try {
            if(in.ready()){

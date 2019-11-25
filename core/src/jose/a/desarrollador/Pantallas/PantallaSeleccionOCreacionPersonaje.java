@@ -28,6 +28,7 @@ import jose.a.desarrollador.Entidades.Boxeador;
 import jose.a.desarrollador.Principal;
 import jose.a.desarrollador.Util.Assets;
 import jose.a.desarrollador.Util.Constantes;
+import jose.a.desarrollador.Util.HiloComunicacionAbierta;
 
 /**
  *
@@ -38,6 +39,9 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
     Stage stage; 
     BitmapFont font;
     ArrayList<TextButton> botones;
+    TextButton boton_cerrar_sesion;
+    TextButtonStyle textButtonStyle;
+    private Skin ui;
     Table tabla;  
     private Skin boton_add;
     private Skin boxeador;
@@ -66,6 +70,27 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
     
     public void init(){        
                 
+        TextureAtlas atlas=new TextureAtlas(Constantes.TEXTURE_ATLAS_UI);
+        ui=new Skin(atlas);
+        
+        textButtonStyle = new TextButtonStyle();
+        textButtonStyle.up= ui.getDrawable(Constantes.BOTON_CERRAR_SESION);
+        textButtonStyle.down= ui.getDrawable(Constantes.BOTON_CERRAR_SESION_PULSADO);
+        textButtonStyle.fontColor=Color.WHITE;
+        textButtonStyle.font = font;
+        
+        textButtonStyle.pressedOffsetX=1;
+        textButtonStyle.pressedOffsetY=-1;
+        
+        boton_cerrar_sesion = new TextButton("", textButtonStyle);
+        
+        boton_cerrar_sesion.addListener(new ClickListener(){
+            @Override
+            public void clicked(InputEvent event, float x, float y) {                  
+                enviarMensajeCerrarSesion();
+            }
+
+        });
         
         stage=new Stage();  
         extendViewport=new ExtendViewport(Constantes.WORLD_SIZE,Constantes.WORLD_SIZE);
@@ -75,6 +100,10 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
         tabla= new Table();
         
         tabla.setFillParent(true);
+        
+        tabla.add(boton_cerrar_sesion).colspan(3).width(50).height(50).align(Align.right);
+        tabla.row().spaceTop(30);
+        
         for (int i = 0; i < botones.size(); i++) {
             TextButton boton=botones.get(i);
             final String informacion=boton.getLabel().getText().toString();
@@ -154,5 +183,10 @@ public class PantallaSeleccionOCreacionPersonaje extends ScreenAdapter{
         Assets.instance.dispose();
 
 
+    }
+    
+    public void enviarMensajeCerrarSesion(){
+        HiloComunicacionAbierta.logueado = false;
+        PantallaLoguin.t.interrupt();
     }
 }

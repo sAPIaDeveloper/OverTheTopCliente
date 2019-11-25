@@ -164,15 +164,15 @@ public class PantallaResumenCombate extends ScreenAdapter{
         int puntosP2;
         
         if(player1.getNombre_boxeador().equals(nombre_ganador)){
-            puntosP1 = player1.getGolpes_conectados()+15;
-            puntosP2 = player2.getGolpes_conectados()-5;
+            puntosP1 = player1.getGolpes_conectados()+5;
+            puntosP2 = player2.getGolpes_conectados()-3;
             if(puntosP2 < 0) puntosP2 = 0;
             
             resultadoP1 = new Label("VICTORIA",label);
             resultadoP2 = new Label("DERROTA",label);
         }else{
-            puntosP1 = player1.getGolpes_conectados()-5;
-            puntosP2 = player2.getGolpes_conectados()+15;
+            puntosP1 = player1.getGolpes_conectados()-3;
+            puntosP2 = player2.getGolpes_conectados()+5;
             if(puntosP1< 0) puntosP1 = 0;
             
             resultadoP2 = new Label("VICTORIA",label);

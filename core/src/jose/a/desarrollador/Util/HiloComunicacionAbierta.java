@@ -9,6 +9,7 @@ import com.badlogic.gdx.Gdx;
 import java.net.DatagramPacket;
 import java.net.DatagramSocket;
 import java.net.InetAddress;
+import jose.a.desarrollador.Pantallas.PantallaLoguin;
 import jose.a.desarrollador.Pantallas.PantallaSinConexion;
 import jose.a.desarrollador.Principal;
 
@@ -20,11 +21,12 @@ public class HiloComunicacionAbierta extends Thread{
     String usuario;
     Preferencias pref;
     Principal principal;
-
+    public static boolean logueado;
     public HiloComunicacionAbierta(String usuario,Principal principal) {
         this.usuario = usuario;  
         pref = new Preferencias();
         this.principal = principal;
+        logueado = true;
     }
 
     @Override
@@ -45,13 +47,18 @@ public class HiloComunicacionAbierta extends Thread{
                 
                 Thread.sleep(10000);
             }
-        } catch (Exception e) {
+            
+        } catch (Exception e) {            
             Gdx.app.postRunnable(new Runnable() {
                 @Override
                 public void run() {
-                   principal.setScreen(new PantallaSinConexion(principal));
+                    Constantes.DATOS_USUARIO.clearBoxeadores();
+                    if(!logueado){
+                        principal.setScreen(new PantallaLoguin(principal));
+                    }else
+                        principal.setScreen(new PantallaSinConexion(principal));
                 }
-             });
+            });
             
         }
         

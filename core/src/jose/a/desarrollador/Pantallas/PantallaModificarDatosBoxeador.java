@@ -118,12 +118,10 @@ public class PantallaModificarDatosBoxeador extends ScreenAdapter{
         indice_pais=0;
         indice_boxeadores=0;
         
-        boxeadores=new ArrayList();
-        boxeadores.add(Constantes.BOXEADORA_CECILIA);
+        boxeadores=new ArrayList();        
         boxeadores.add(Constantes.BOXEADORA_JESSI);
         boxeadores.add(Constantes.BOXEADORA_KATE);
-        boxeadores.add(Constantes.BOXEADOR_BUZZ);
-        boxeadores.add(Constantes.BOXEADOR_JOHN);
+        boxeadores.add(Constantes.BOXEADOR_BUZZ);        
         boxeadores.add(Constantes.BOXEADOR_NEGRO);
         indice_boxeadores=0;
         

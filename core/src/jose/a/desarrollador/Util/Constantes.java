@@ -26,6 +26,8 @@ public class Constantes {
     public static String TEXTURE_ATLAS_UI="UI/ui.pack";    
     public static String BOTON="botonPantallaPrincipal";
     public static String BOTON_PULSADO="botonPantallaPrincipal_pulsado";
+    public static String BOTON_CERRAR_SESION="boton_cerrar_sesion";
+    public static String BOTON_CERRAR_SESION_PULSADO="boton_cerrar_sesion_pulsado";
     public static String TABLA="tabla";
     public static String TEXTFIELD="textField";
     public static String BOTON_ADD_BOXEADOR="boton_add_boxeador";
@@ -49,23 +51,18 @@ public class Constantes {
     public static String FLECHA_IZQUIERDA_SELECCIONADA="flecha_izq_seleccionada";
     public static String FLECHA_DERECHA_SELECCIONADA="flecha_dcha_seleccionada";
     public static String CHECKBOX_ACTIVADO="ckeckbox_activado";
-    public static String CHECKBOX_DESACTIVADO="ckeckbox_desactivado";
-    public static String OPCIONES="opciones";
+    public static String CHECKBOX_DESACTIVADO="ckeckbox_desactivado";    
     
     public static String TEXTURE_ATLAS_ROSTRO_BOXEADORES="Boxeadores_rostro/retrato_boxeadores.pack";
-    public static String BOXEADOR_JOHN="Boxeador_john";
     public static String BOXEADOR_NEGRO="Boxeador_negro";
     public static String BOXEADOR_BUZZ="Boxeador_Buzz";
     public static String BOXEADORA_KATE="Boxeadora_Kate";
-    public static String BOXEADORA_JESSI="Boxeadora_Jessi";
-    public static String BOXEADORA_CECILIA="Boxeadora_cecilia";
-    
-    public static String BOXEADOR_JOHN_SELECCIONADO="Boxeador_john_seleccionado";
+    public static String BOXEADORA_JESSI="Boxeadora_Jessi";    
+       
     public static String BOXEADOR_NEGRO_SELECCIONADO="Boxeador_negro_seleccionado";
     public static String BOXEADOR_BUZZ_SELECCIONADO="Boxeador_Buzz_seleccionado";
     public static String BOXEADORA_KATE_SELECCIONADA="Boxeadora_Kate_seleccionado";
-    public static String BOXEADORA_JESSI_SELECCIONADA="Boxeadora_Jessi_seleccionado";
-    public static String BOXEADORA_CECILIA_SELECCIONADA="Boxeadora_cecilia_seleccionado";
+    public static String BOXEADORA_JESSI_SELECCIONADA="Boxeadora_Jessi_seleccionado";    
     
     
     public static String TEXTURE_ATLAS_INICIO="PantallaInicio/pantallainicio.pack";

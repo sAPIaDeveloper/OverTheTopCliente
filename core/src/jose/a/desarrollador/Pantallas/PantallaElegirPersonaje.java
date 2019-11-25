@@ -160,9 +160,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
         tipos.add(Constantes.BOXEADOR_NEGRO);
         tipos.add(Constantes.BOXEADORA_JESSI);
         tipos.add(Constantes.BOXEADOR_BUZZ);
-        tipos.add(Constantes.BOXEADORA_KATE);        
-        tipos.add(Constantes.BOXEADOR_JOHN);        
-        tipos.add(Constantes.BOXEADORA_CECILIA);
+        tipos.add(Constantes.BOXEADORA_KATE);                               
         
         
         for (int i = 0; i < tipos.size(); i++) {
@@ -210,9 +208,6 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
     
     public void startVoice(){
         switch(tipo_boxeador){
-            case "Boxeador_john":
-                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_john;
-                break;
             case "Boxeador_negro":
                 sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_negro;
                 break;
@@ -225,9 +220,7 @@ public class PantallaElegirPersonaje extends ScreenAdapter {
             case "Boxeadora_Jessi":
                 sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_jessi;
                 break;
-            case "Boxeadora_cecilia":
-                sonidoVoz = (Sound) Assets.instance.assetsSonido.voz_cecilia;
-                break;
+          
         }
         
         sonidoVoz.play(volumen);

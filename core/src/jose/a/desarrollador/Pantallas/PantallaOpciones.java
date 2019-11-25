@@ -216,7 +216,7 @@ public class PantallaOpciones extends ScreenAdapter{
             public void clicked(InputEvent event, float x, float y) {                 
               if(pref.isPantalla_completa()) {
                 pref.setPantalla_completa(false);
-                Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+                Gdx.graphics.setWindowedMode(800, 600);
                 textButtonStyleCheckboxPantallaCompleta.up = ui.getDrawable(Constantes.CHECKBOX_DESACTIVADO);
               }else{
                   pref.setPantalla_completa(true);

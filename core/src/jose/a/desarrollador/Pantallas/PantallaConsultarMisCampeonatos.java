@@ -138,7 +138,7 @@ public class PantallaConsultarMisCampeonatos extends ScreenAdapter{
         textButtonStyle.pressedOffsetX=1;
         textButtonStyle.pressedOffsetY=-1;
         
-        buscar =new TextButton("BUSCAR",textButtonStyle);
+        buscar =new TextButton("MOSTRAR",textButtonStyle);
         buscar.addListener(new ClickListener(){
             @Override
             public void clicked(InputEvent event, float x, float y) {

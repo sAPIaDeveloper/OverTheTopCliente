@@ -130,6 +130,8 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         style_error.font=font;
         style_error.fontColor= Color.RED;
         mensaje_error=new Label("",style_error);
+        mensaje_error.setWrap(true);
+        mensaje_error.setAlignment(Align.left);
         
         label=new LabelStyle();
         label.font=font;
@@ -175,7 +177,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
                         SimpleDateFormat formatoFecha = new SimpleDateFormat("yyyy/MM/dd");
                         Date fecha=formatoFecha.parse(texto_fecha); 
                         if(fecha.getTime()<new Date().getTime()){
-                            mensaje_error.setText("Fecha mal introducida");
+                            mensaje_error.setText("No puedes crear una competicion para el mismo dia o anterior");
                         }else{
                             mensaje_error.setText("");
                             String categoria=spinner_categorias.getSelected();
@@ -253,7 +255,7 @@ public class PantallaCrearCompeticiones extends ScreenAdapter {
         tabla.add().width(50);
         tabla.add(spinner_categorias).width(200).height(25);
         tabla.row().spaceTop(25);
-        tabla.add(mensaje_error).align(Align.center).colspan(3);
+        tabla.add(mensaje_error).align(Align.left).colspan(3);
         tabla.row().spaceTop(25);
         tabla.add(atras).width(100).height(50).colspan(1);
         tabla.add(crear_competicion).width(200).height(50).colspan(2).align(Align.right);

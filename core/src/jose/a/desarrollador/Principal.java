@@ -11,7 +11,8 @@ public class Principal extends Game{
     public Graphics.DisplayMode display;
 	@Override
 	public void create () {
-            Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+            //Gdx.graphics.setWindowedMode(Gdx.graphics.getDisplayMode().width, Gdx.graphics.getDisplayMode().height);
+            Gdx.graphics.setWindowedMode(800, 600);
             System.out.println(System.currentTimeMillis());
             setScreen(new PantallaInicio(this));
            

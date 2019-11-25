@@ -61,8 +61,7 @@ public class PantallaLoguin extends ScreenAdapter {
     TextButton boton_login;
     TextButton boton_registro;
     TextButtonStyle textButtonStyle;
-    TextButton boton_opciones;
-    TextButtonStyle textButtonStyleOpciones;
+    TextButton boton_opciones;    
     TextFieldStyle textFieldStyle;
     TextField email;
     TextField contrasena;
@@ -79,6 +78,7 @@ public class PantallaLoguin extends ScreenAdapter {
     TextureAtlas atlas;
     Label error;
     Pixmap cursorColor;
+    public static Thread t;
     public PantallaLoguin(Principal principal) {  
         this.principal=principal;
         
@@ -187,18 +187,14 @@ public class PantallaLoguin extends ScreenAdapter {
                     if(formatoCorrectoCorreo(texto_email)){
                          enviarDatos(texto_email,ContraseñaCodificada,1);
                     }else{
-                        error.setText("El formato del correo electronico es inválido");
+                        error.setText("El formato del correo electronico es invalido");
                     }
                 }
                 
                 
             }
 
-        });
-        
-        textButtonStyleOpciones = new TextButtonStyle();
-        textButtonStyleOpciones.up= ui.getDrawable(Constantes.OPCIONES);                
-        textButtonStyleOpciones.font = font;
+        });               
         
         boton_opciones = new TextButton("Opciones",textButtonStyle);
         boton_opciones.addListener(new ClickListener(){
@@ -232,12 +228,8 @@ public class PantallaLoguin extends ScreenAdapter {
     }
     
     public void crearTabla(){
-        tabla= new Table();       
-        //tabla.setBackground(ui.getDrawable(Constantes.TABLA));  
+        tabla= new Table();               
         tabla.setFillParent(true);
-        /*tabla.setSize(400, 400);           
-        tabla.setPosition((Gdx.graphics.getWidth()/2)-200,(Gdx.graphics.getHeight()/2)-200); */
-        
         
         tabla.add(texto_email).width(50);
         tabla.add(email).width(200).height(50);
@@ -327,14 +319,16 @@ public class PantallaLoguin extends ScreenAdapter {
                 break;
                 
             case REGISTRO_USUARIO_COMPLETADO:
-                new HiloComunicacionAbierta(codigos[1],principal).start();
+                t = new HiloComunicacionAbierta(codigos[1],principal);
+                t.start();
                 System.out.println("Registrado con exito");
                 principal.setScreen(new PantallaSeleccionOCreacionPersonaje(principal));
                 break;
                 
             case INICIAR_SESION_ACEPTADO:
                 System.out.println("Logueado con exito"); 
-                new HiloComunicacionAbierta(codigos[1],principal).start();
+                t = new HiloComunicacionAbierta(codigos[1],principal);
+                t.start();
                 if(codigos.length>2){                    
                     for (int i = 2; i < codigos.length; i++) {
                         String [] datos_boxeador=codigos[i].split("@");

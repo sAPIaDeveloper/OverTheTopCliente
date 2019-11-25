@@ -165,14 +165,7 @@ public class PlayerCliente {
         int frame;
         switch(estados_boxeador){
             case PIVOTANDO:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                    
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -212,27 +205,13 @@ public class PlayerCliente {
                         }
                         
                         
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                  
                 }
                 
                 break;
                 
             case BLOQUEO:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                   
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -266,26 +245,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.bloqueo_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.bloqueo_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;               
                 }
                 break;
                 
             case DIRECTO_IZQUIERDA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -331,26 +296,12 @@ public class PlayerCliente {
                              
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_izquierda_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                   
                 }
                 break;
                 
             case DIRECTO_DERECHA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){               
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -390,26 +341,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.directo_derecha_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.directo_derecha_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                   
                 }
                 break;
                 
             case GANCHO_DERECHA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                    
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -447,26 +384,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_izquierda_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                    
                 }
                 break;
                 
             case GANCHO_IZQUIERDA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                   
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -504,26 +427,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.gancho_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.gancho_derecha_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                    
                 }
                 break;
                 
             case ESQUIVAR_IZQUIERDA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                 
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -556,26 +465,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_izquierda_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_izquierda_espalda,elapsed_time);
                         }                        
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                    
                 }
                 break;
                 
             case ESQUIVAR_DERECHA:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                   
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -607,26 +502,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.esquivar_derecha_espalda.getKeyFrame(walkTimeSeconds);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.esquivar_derecha_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                   
                 }
                 break;
                 
             case GOLPEADO:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                    
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -660,26 +541,12 @@ public class PlayerCliente {
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.golpeado_espalda.getKeyFrame(elapsed_time);
                              comprobarAnimacionTerminada(Assets.instance.assetsJessi.golpeado_espalda,elapsed_time);
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                   
                 }
                 break;
                 
             case DERROTADO:
-                switch(tipo_boxeador){
-                    case "Boxeador_john":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                switch(tipo_boxeador){                    
                     case "Boxeador_negro":
                         if(rol_boxeador.equals("CONTRINCANTE")){
                         
@@ -707,14 +574,7 @@ public class PlayerCliente {
                         }else{
                              boxeador= (TextureRegion) Assets.instance.assetsJessi.derrotado_espalda.getKeyFrame(elapsed_time);                            
                         }
-                        break;
-                    case "Boxeadora_cecilia":
-                        if(rol_boxeador.equals("CONTRINCANTE")){
-                        
-                        }else{
-                        
-                        }
-                        break;
+                        break;                    
                 }
                 break;
         }

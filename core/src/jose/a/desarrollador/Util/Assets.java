@@ -28,13 +28,11 @@ public class Assets implements Disposable,AssetErrorListener {
     public static final Assets instance = new Assets();
     private AssetManager assetManager;
     public ScreenInicio screen;
-    public AssetsUI assetsUi;
-    public AssetsJOHN assetsJohn;
+    public AssetsUI assetsUi;    
     public AssetsNEGRO assetsNegro;
     public AssetsBUZZ assetsBuzz;
     public AssetsKATE assetsKate;
-    public AssetsJESSI assetsJessi;
-    public AssetsCECILIA assetsCecilia;
+    public AssetsJESSI assetsJessi;    
     public AssetsSonido assetsSonido;
     
     public void init(AssetManager assetManager){
@@ -181,14 +179,7 @@ public class Assets implements Disposable,AssetErrorListener {
             parameter.size = 18;
         }
         
-    }
-        
-    public class AssetsJOHN{
-
-        public AssetsJOHN(TextureAtlas atlas) {
-        }
-        
-    }
+    }           
     
     public class AssetsBUZZ{
         public AssetsBUZZ(TextureAtlas atlas) {
@@ -541,18 +532,11 @@ public class Assets implements Disposable,AssetErrorListener {
         }
     }
     
-    public class AssetsCECILIA{
-        public AssetsCECILIA(TextureAtlas atlas) {
-        }
-    }
-    
     public class AssetsSonido{
-        public final Sound voz_buzz;
-        public final Sound voz_john;
+        public final Sound voz_buzz;        
         public final Sound voz_negro;
         public final Sound voz_jessi;
-        public final Sound voz_kate;
-        public final Sound voz_cecilia;
+        public final Sound voz_kate;        
         
         public final Sound click_boton;
         public final Sound empezar_asalto;
@@ -567,11 +551,11 @@ public class Assets implements Disposable,AssetErrorListener {
         
         public AssetsSonido() {
             voz_buzz = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_BUZZ));
-            voz_john = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JOHN));
+           //voz_john = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JOHN));
             voz_negro = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_NEGRO));
             voz_jessi = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_JESSI));
             voz_kate = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_KATE));
-            voz_cecilia = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_CECILIA));
+           // voz_cecilia = Gdx.audio.newSound(Gdx.files.internal(Constantes.VOZ_CECILIA));
             
             click_boton = Gdx.audio.newSound(Gdx.files.internal(Constantes.SONIDO_BOTON));
             empezar_asalto = Gdx.audio.newSound(Gdx.files.internal(Constantes.SONIDO_EMPEZAR_ASALTO));
